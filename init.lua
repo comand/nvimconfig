@@ -13,3 +13,5 @@ require "user.indentline"
 require "user.whichkey"
 require "user.autocommands"
 require "user.prettyfold"
+
+require "user.neovide"
