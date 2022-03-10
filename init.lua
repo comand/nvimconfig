@@ -14,4 +14,6 @@ require "user.whichkey"
 require "user.autocommands"
 require "user.prettyfold"
 
-require "user.neovide"
+if vim.g.neovide then
+    require "user.neovide"
+end
