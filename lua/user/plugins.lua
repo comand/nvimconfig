@@ -38,12 +38,16 @@ packer.init {
 -- }}}
 
 return packer.startup(function(use)
+
+  -- Basics
   use 'wbthomason/packer.nvim' -- Have packer manage itself
   use {'lewis6991/impatient.nvim', config = function()
     require'impatient'.enable_profile()
   end}
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
+
+  -- Tree sitter
   use {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"}
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
@@ -82,6 +86,13 @@ return packer.startup(function(use)
   use 'numToStr/Comment.nvim'
   use 'akinsho/toggleterm.nvim'
   use 'folke/which-key.nvim'
+
+  use 'simnalamburt/vim-mundo' -- undo viewer
+  use 'tpope/vim-abolish' -- case sensitive search/replace
+  use 'tpope/vim-eunuch'  -- file mode utilities
+  use 'mhinz/vim-signify' -- hunk change markers for perforce
+  use 'vim-scripts/a.vim' -- alternate between matching buffers
+  use 'wsdjeg/vim-fetch' -- handle file line numbers on input
 
   if PACKER_BOOTSTRAP then
       require("packer").sync()

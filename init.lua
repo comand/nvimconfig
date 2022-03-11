@@ -13,6 +13,8 @@ require "user.indentline"
 require "user.whichkey"
 require "user.autocommands"
 require "user.prettyfold"
+require "user.signify"
+require "user.alternate"
 
 if vim.g.neovide then
     require "user.neovide"
