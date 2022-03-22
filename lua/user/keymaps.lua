@@ -1,10 +1,8 @@
 local opts = {noremap = true, silent = true}
-local term_opts = {silent = true}
 
 local keymap = vim.api.nvim_set_keymap
 
 -- Remap comma as leader
-keymap("", ",", "<Nop>", opts)
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
@@ -12,8 +10,6 @@ vim.g.maplocalleader = ","
 -- Normal Mode
 --
 
--- Map QQ to ZQ
-keymap("n", "QQ", "ZQ", opts)
 -- Have Y behave like D and C rather than dd and cc (which is already done by yy)
 keymap("n", "Y", "y$", opts)
 
@@ -35,34 +31,9 @@ vim.o.pastetoggle = '<F4>'
 -- Search and replace word under cursor
 keymap("n", "<C-s>", ":%s/<C-R><C-W>/", opts)
 
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-k>", "<C-w>l", opts)
-
--- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
-
 -- Navigate buffers
 keymap("n", "<C-n>", ":bnext<CR>", opts)
 keymap("n", "<C-p>", ":bprevious<CR>", opts)
-
--- Move text up and down
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
-
--- Change directory to current buffer
-keymap("n", "<Leader>cd", ":cd %:p:h<CR>:pwd<CR>", opts)
-
--- Close the current buffer
-keymap("n", "<Leader>w", ":bdelete<CR>", opts)
-
--- Build
-keymap("n", "<Leader>m", ":make<CR>", opts)
 
 --
 -- Insert Mode
