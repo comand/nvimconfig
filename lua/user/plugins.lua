@@ -41,8 +41,9 @@ return packer.startup(function(use)
 
   -- Basics
   use 'wbthomason/packer.nvim' -- Have packer manage itself
-  use {'lewis6991/impatient.nvim', config = function()
-    require'impatient'.enable_profile()
+  use {'lewis6991/impatient.nvim',
+    config = function()
+      -- require'impatient'.enable_profile()
   end}
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
@@ -70,6 +71,15 @@ return packer.startup(function(use)
   use 'tamago324/nlsp-settings.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'p00f/clangd_extensions.nvim'
+  use {'folke/trouble.nvim',
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup { }
+  end}
+  use {'j-hui/fidget.nvim',
+    config = function()
+      require'fidget'.setup { }
+  end}
 
   -- Completion
   use 'hrsh7th/nvim-cmp'
