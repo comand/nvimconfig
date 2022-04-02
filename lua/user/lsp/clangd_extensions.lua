@@ -5,6 +5,9 @@ end
 
 clangd_extensions.setup {
   server = {
-    cmd = {'clangd', '--enable-config'},
+    cmd = {'clangd',
+      '--enable-config',
+      '--limit-results=0',
+    },
   },
 }

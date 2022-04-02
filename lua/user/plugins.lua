@@ -104,6 +104,10 @@ return packer.startup(function(use)
   use 'vim-scripts/a.vim' -- alternate between matching buffers
   use 'wsdjeg/vim-fetch' -- handle file line numbers on input
 
+  use '/pixar/ws/trees/comand/vim-perforce'
+  use '/pixar/ws/trees/comand/vim-comand-pixar'
+  use '/pixar/ws/trees/comand/grok-vim'
+
   if PACKER_BOOTSTRAP then
       require("packer").sync()
   end
