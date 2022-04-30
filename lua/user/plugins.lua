@@ -68,8 +68,9 @@ return packer.startup(function(use)
   use 'mrjones2014/legendary.nvim'
 
   -- Snippets
-  use 'L3MON4D3/LuaSnip'
-  use 'rafamadriz/friendly-snippets'
+  -- use 'L3MON4D3/LuaSnip'
+  -- use 'rafamadriz/friendly-snippets'
+  use 'SirVer/ultisnips'
 
   -- LSP
   use 'neovim/nvim-lspconfig'
@@ -93,7 +94,9 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lsp'
-  use 'saadparwaiz1/cmp_luasnip'
+  -- use 'saadparwaiz1/cmp_luasnip'
+  use 'quangnguyen30192/cmp-nvim-ultisnips'
+
 
   -- SCM
   use 'tpope/vim-fugitive' -- Git commands in nvim
