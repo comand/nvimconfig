@@ -1,113 +1,158 @@
 local opts = {noremap = true, silent = true}
 
-local keymap = vim.api.nvim_set_keymap
-
 -- Remap comma as leader
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
---
--- Normal Mode
---
+require'legendary'.bind_keymaps {
+  -- Basic
+  { 'QQ',  'ZQ', opts=opts },
+  { 'Y',   'y$', opts=opts }, -- Make Y behave like D and C rather than dd and cc instead of yy
 
--- Map QQ to ZQ
-keymap("n", "QQ", "ZQ", opts)
--- Have Y behave like D and C rather than dd and cc (which is already done by yy)
-keymap("n", "Y", "y$", opts)
+  -- Toggles
+  { '<Tab>l', ':set invlist list?<CR>', opts=opts,
+    description = 'Toggle list',
+  },
+  { '<Tab>n', ':set invnumber number?<CR>', opts=opts,
+    description = 'Toggle number',
+  },
+  { '<Tab>p', ':set invpaste paste?<CR>', opts=opts,
+    description = 'Toggle paste',
+  },
+  { '<Tab>h', ':set invhlsearch hlsearch?<CR>', opts=opts,
+    description = 'Toggle hlsearch',
+  },
 
--- Toggle list on/off
-keymap("n", "\tl", ":set invlist list?<CR>", opts)
--- keymap("n", "<F2>", "\tl", {})
+  -- Buffers
+  { '<C-n>', ':bnext<CR>', opts=opts,
+    description = 'Next buffer',
+  },
+  { '<C-p>', ':bprevious<CR>', opts=opts,
+    description = 'Previous buffer',
+  },
+  { '<Leader>w', ':bdelete<CR>', opts=opts,
+    description = 'Close current buffer',
+  },
 
--- Toggle number on/off, normal and insert modes
-keymap("n", "\tn", ":set invnumber number?<CR>", opts)
--- keymap("n", "<F3>", "\tn", {})
--- keymap("i", "<F3>", "<C-O>\tn", {})
+  -- Windows
+  { '<C-h>', '<C-w>h', opts=opts,
+    description = 'Navigate to window at left',
+  },
+  { '<C-j>', '<C-w>j', opts=opts,
+    description = 'Navigate to window below',
+  },
+  { '<C-k>', '<C-w>k', opts=opts,
+    description = 'Navigate to window above',
+  },
+  { '<C-l>', '<C-w>l', opts=opts,
+    description = 'Navigate to window at right',
+  },
 
--- Toggle paste on/off, normal and insert modes
-keymap("n", "\tp", ":set invpaste paste?<CR>", opts)
--- keymap("n", "<F4>", "\tp", {})
--- keymap("i", "<F4>", "<C-O>\tp", {})
--- vim.o.pastetoggle = '<F4>'
+  -- Text
+  { '<A-k>',
+    {
+      n = '<Esc>:move .-2<CR>==gi',
+      v = ':move .-2<CR>==',
+      x = ":move '<-2<CR>gv-gv",
+    },
+    opts = opts,
+    description = 'Move selected line(s) up',
+  },
+  { '<A-j>',
+    {
+      n = '<Esc>:move .+1<CR>==gi',
+      v = ':move .+1<CR>==',
+      x = ":move '>+1<CR>gv-gv",
+    },
+    opts = opts,
+    description = 'Move selected line(s) down',
+  },
 
--- Search and replace word under cursor
-keymap("n", "<C-s>", ":%s/<C-R><C-W>/", opts)
+  { "K", { x = ":move '<-2<CR>gv-gv" }, opts=opts,
+    description = 'Move visual block selection up',
+  },
+  { "J", { x = ":move '>+1<CR>gv-gv" }, opts=opts,
+    description = 'Move visual block selection down',
+  },
 
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-k>", "<C-w>l", opts)
+  { "<", { v = "<gv" }, opts=opts,
+    description = 'Decrease indent',
+  },
+  { ">", { v = ">gv" }, opts=opts,
+    description = 'Increase indent',
+  },
 
--- Resize with arrows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<C-Down>", ":resize +2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+  { "p", { v = '"_dP'}, opts=opts,
+    description = 'Paste over visual selection',
+  },
 
--- Navigate buffers
-keymap("n", "<C-n>", ":bnext<CR>", opts)
-keymap("n", "<C-p>", ":bprevious<CR>", opts)
+  { '<C-s>', ':%s/<C-R><C-W>/', opts=opts,
+    description = 'Search and replace word under cursor',
+  },
 
--- Move text up and down
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
+  -- Misc
+  { '<Leader>cd', ':cd %:p:h<CR>:pwd<CR>', opts=opts,
+    description = 'Change directory to current buffer',
+  },
+  { '<Leader>m', ':make<CR>', opts=opts,
+    description = 'Build in current directory',
+  },
 
--- Change directory to current buffer
-keymap("n", "<Leader>cd", ":cd %:p:h<CR>:pwd<CR>", opts)
+  -- Grok
+  { '<Leader>gd', ':call grok#DefinitionSearch()<CR>', opts=opts,
+    description = 'Grok definition search word under cursor',
+  },
+  { '<Leader>gf', ':call grok#FullSearch()<CR>', opts=opts,
+    description = 'Grok full search word under cursor',
+  },
+  { '<Leader>gs', ':call grok#SymbolSearch()<CR>', opts=opts,
+    description = 'Grok symbol search word under cursor',
+  },
+  { '<Leader>gx', ':call grok#Xref()<CR>', opts=opts,
+    description = 'Grok cross reference current file/line',
+  },
 
--- Close the current buffer
-keymap("n", "<Leader>w", ":bdelete<CR>", opts)
+  -- Qt Docs
+  { '<Leader>qt', ':call QtDoc(expand("<cword>"))<CR>', opts=opts,
+    description = 'Open Qt docs for word under cursor',
+  },
 
--- Build
-keymap("n", "<Leader>m", ":make<CR>", opts)
+  -- Perforce
+  { '<Leader>pe', '<cmd>Vp4Edit<CR>', opts=opts,
+    description = 'Vp4: open current file for edit',
+  },
+  { '<Leader>pr', '<cmd>Vp4Revert<CR>', opts=opts,
+    description = 'Vp4: revert current file',
+  },
+  { '<Leader>pd', '<cmd>Vp4Diff<CR>', opts=opts,
+    description = 'Vp4: diff current file',
+  },
+  { '<Leader>pi', '<cmd>Vp4Info<CR>', opts=opts,
+    description = 'Vp4: display info for current file',
+  },
+  { '<Leader>ph', '<cmd>Vp4Filelog<CR>', opts=opts,
+    description = 'Vp4: display history for current file',
+  },
 
--- Grok
--- keymap("n", "<Leader>gf", ":call grok#FullSearch()<CR>", opts)
--- keymap("n", "<Leader>gd", ":call grok#DefinitionSearch()<CR>", opts)
--- keymap("n", "<Leader>gs", ":call grok#SymbolSearch()<CR>", opts)
--- keymap("n", "<Leader>gx", ":call grok#XRef()<CR>", opts)
+  -- Toggle Term
+  { '<Leader>TG', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', opts=opts,
+    description = 'Open lazygit',
+  },
+  { '<Leader>TD', '<cmd>lua _NCDU_TOGGLE()<CR>', opts=opts,
+    description = 'Open ncdu',
+  },
+  { '<Leader>TT', '<cmd>lua _HTOP_TOGGLE()<CR>', opts=opts,
+    description = 'Open htop',
+  },
+  { '<Leader>TP', '<cmd>lua _PYTHON_TOGGLE()<CR>', opts=opts,
+    description = 'Open python terminal',
+  },
+  { '<Leader>TB', '<cmd>ToggleTerm size=10 direction=horizontal<CR>', opts=opts,
+    description = 'Open terminal in bottom window',
+  },
 
--- Qt Docs
-keymap("n", "<Leader>qt", ':call QtDoc(expand("<cword>"))<CR>', opts)
-
--- Perforce
-keymap("n", "<Leader>pe", "<cmd>Vp4Edit<CR>", opts)
-keymap("n", "<Leader>pr", "<cmd>Vp4Revert<CR>", opts)
-keymap("n", "<Leader>pd", "<cmd>Vp4Diff<CR>", opts)
-keymap("n", "<Leader>pi", "<cmd>Vp4Info<CR>", opts)
-keymap("n", "<Leader>pf", "<cmd>Vp4Filelog<CR>", opts)
-
--- Toggle Term
-keymap("n", "<Leader>Tg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
-keymap("n", "<Leader>Td", "<cmd>lua _NCDU_TOGGLE()<CR>", opts)
-keymap("n", "<Leader>Tt", "<cmd>lua _HTOP_TOGGLE()<CR>", opts)
-keymap("n", "<Leader>Th", "<cmd>ToggleTerm size=10 direction=horizontal<CR>", opts)
-keymap("n", "<C-t>", "<cmd>ToggleTerm direction=float<CR>", opts)
-
---
--- Insert Mode
---
-
---
--- Visual Mode
---
-
--- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
-
--- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
-keymap("v", "p", '"_dP', opts)
-
---
--- Visual Block Mode
---
-
--- Move text up and down
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+  -- Legendary
+  { '<C-l>', '<cmd>Legendary<CR>', opts=opts,
+    description = 'Legendary search',
+  },
+}
