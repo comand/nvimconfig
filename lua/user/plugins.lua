@@ -47,6 +47,7 @@ return packer.startup(function(use)
   end}
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
+  use 'folke/lua-dev.nvim'
 
   -- Tree sitter
   use {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"}
