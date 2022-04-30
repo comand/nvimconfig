@@ -4,7 +4,18 @@ if not status_ok then
 end
 
 lualine.setup({
-  options = {
-    theme = 'solarized_light',
-  },
+  sections = {
+    lualine_c = {
+      {
+        'filename',
+        file_status = true,
+        path = 1,
+        symbols = {
+          modified = ' ',
+          readonly = ' ',
+        }
+      }
+    }
+  }
 })
+
