@@ -17,18 +17,18 @@ keymap("n", "Y", "y$", opts)
 
 -- Toggle list on/off
 keymap("n", "\tl", ":set invlist list?<CR>", opts)
-keymap("n", "<F2>", "\tl", {})
+-- keymap("n", "<F2>", "\tl", {})
 
 -- Toggle number on/off, normal and insert modes
 keymap("n", "\tn", ":set invnumber number?<CR>", opts)
-keymap("n", "<F3>", "\tn", {})
-keymap("i", "<F3>", "<C-O>\tn", {})
+-- keymap("n", "<F3>", "\tn", {})
+-- keymap("i", "<F3>", "<C-O>\tn", {})
 
 -- Toggle paste on/off, normal and insert modes
 keymap("n", "\tp", ":set invpaste paste?<CR>", opts)
-keymap("n", "<F4>", "\tp", {})
-keymap("i", "<F4>", "<C-O>\tp", {})
-vim.o.pastetoggle = '<F4>'
+-- keymap("n", "<F4>", "\tp", {})
+-- keymap("i", "<F4>", "<C-O>\tp", {})
+-- vim.o.pastetoggle = '<F4>'
 
 -- Search and replace word under cursor
 keymap("n", "<C-s>", ":%s/<C-R><C-W>/", opts)
@@ -61,6 +61,24 @@ keymap("n", "<Leader>w", ":bdelete<CR>", opts)
 
 -- Build
 keymap("n", "<Leader>m", ":make<CR>", opts)
+
+
+-- Qt Docs
+keymap("n", "<Leader>qt", ':call QtDoc(expand("<cword>"))<CR>', opts)
+
+-- Perforce
+keymap("n", "<Leader>pe", "<cmd>Vp4Edit<CR>", opts)
+keymap("n", "<Leader>pr", "<cmd>Vp4Revert<CR>", opts)
+keymap("n", "<Leader>pd", "<cmd>Vp4Diff<CR>", opts)
+keymap("n", "<Leader>pi", "<cmd>Vp4Info<CR>", opts)
+keymap("n", "<Leader>pf", "<cmd>Vp4Filelog<CR>", opts)
+
+-- Toggle Term
+keymap("n", "<Leader>Tg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<Leader>Td", "<cmd>lua _NCDU_TOGGLE()<CR>", opts)
+keymap("n", "<Leader>Tt", "<cmd>lua _HTOP_TOGGLE()<CR>", opts)
+keymap("n", "<Leader>Th", "<cmd>ToggleTerm size=10 direction=horizontal<CR>", opts)
+keymap("n", "<C-t>", "<cmd>ToggleTerm direction=float<CR>", opts)
 
 --
 -- Insert Mode
