@@ -98,20 +98,6 @@ require'legendary'.bind_keymaps {
     description = 'Build in current directory',
   },
 
-  -- Grok
-  { '<Leader>gd', ':call grok#DefinitionSearch()<CR>', opts=opts,
-    description = 'Grok definition search word under cursor',
-  },
-  { '<Leader>gf', ':call grok#FullSearch()<CR>', opts=opts,
-    description = 'Grok full search word under cursor',
-  },
-  { '<Leader>gs', ':call grok#SymbolSearch()<CR>', opts=opts,
-    description = 'Grok symbol search word under cursor',
-  },
-  { '<Leader>gx', ':call grok#Xref()<CR>', opts=opts,
-    description = 'Grok cross reference current file/line',
-  },
-
   -- Qt Docs
   { '<Leader>qt', ':call QtDoc(expand("<cword>"))<CR>', opts=opts,
     description = 'Open Qt docs for word under cursor',
