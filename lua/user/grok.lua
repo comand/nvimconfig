@@ -12,7 +12,7 @@ if legendary_ok then
     { '<Leader>gs', ':call grok#SymbolSearch()<CR>', opts=opts,
       description = 'Grok symbol search word under cursor',
     },
-    { '<Leader>gx', ':call grok#Xref()<CR>', opts=opts,
+    { '<Leader>gx', ':call grok#XRef()<CR>', opts=opts,
       description = 'Grok cross reference current file/line',
     },
   }
