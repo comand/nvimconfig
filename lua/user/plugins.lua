@@ -68,8 +68,6 @@ return packer.startup(function(use)
   use 'mrjones2014/legendary.nvim'
 
   -- Snippets
-  -- use 'L3MON4D3/LuaSnip'
-  -- use 'rafamadriz/friendly-snippets'
   use {'SirVer/UltiSnips',
     requires = { 'honza/vim-snippets', event = 'InsertEnter' }}
   use 'honza/vim-snippets'
@@ -99,7 +97,6 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lsp'
-  -- use 'saadparwaiz1/cmp_luasnip'
 
   -- SCM
   use 'tpope/vim-fugitive' -- Git commands in nvim
