@@ -113,5 +113,8 @@ if legendary_ok then
     {'<Leader>th', builtin.help_tags, opts=opts,
       description = 'Telescope: help tags'
     },
+    {'<Leader>tk', builtin.keymaps, opts=opts,
+      description = 'Telescope: keymaps'
+    },
   }
 end
