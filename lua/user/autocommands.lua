@@ -23,4 +23,9 @@ vim.cmd [[
     autocmd!
     autocmd VimResized * tabdo wincmd =
   augroup end
+
+  augroup _quitme
+    autocmd!
+    autocmd QuitPre * blast
+  augroup end
 ]]
