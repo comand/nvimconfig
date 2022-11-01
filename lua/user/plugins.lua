@@ -110,6 +110,7 @@ return packer.startup(function(use)
   use '/pixar/ws/trees/comand/vim-perforce'
   use '/pixar/ws/trees/comand/vim-comand-pixar'
   use '/pixar/ws/trees/comand/grok-vim'
+  use 'ngemily/vim-vp4'   -- perforce file handling
 
   if PACKER_BOOTSTRAP then
       require("packer").sync()
