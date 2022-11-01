@@ -104,7 +104,7 @@ require'legendary'.bind_keymaps {
   },
 
   -- Legendary
-  { '<C-c>', '<cmd>Legendary<CR>', opts=opts,
+  { '<Leader>ls', '<cmd>Legendary<CR>', opts=opts,
     description = 'Legendary search',
   },
 }
