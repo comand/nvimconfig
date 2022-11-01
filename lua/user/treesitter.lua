@@ -20,4 +20,19 @@ configs.setup {
     enable = true,
     enable_autocmd = false,
   },
+
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["i,"] = "@parameter.inner",
+        ["a,"] = "@parameter.outer",
+        ["if"] = "@function.inner",
+        ["af"] = "@function.outer",
+        ["ic"] = "@class.inner",
+        ["ac"] = "@class.outer",
+      },
+    },
+  },
 }

@@ -35,11 +35,15 @@ local options = {
     signcolumn = "yes",
     scrolloff = 8,
     sidescrolloff = 8,
-    showbreak = '↪',
+    --showbreak = '↪',
     wrap = false,
     grepprg = 'rg --vimgrep --no-heading',
     grepformat = '%f:%l:%c:%m,%f:%l:%m',
+    mouse = 'a',
+    mousemodel = 'popup_setpos',
 }
+
+vim.cmd [[vmap <LeftRelease> "*ygv]]
 
 vim.opt.shortmess:append "c"
 vim.opt.listchars:append('eol:↴')
@@ -51,7 +55,7 @@ for k,v in pairs(options) do
     vim.opt[k] = v
 end
 
-vim.g.python3_host_prog = '/opt/rh/rh-python38/root/bin/python3.8'
+vim.g.python3_host_prog = '/home/comand/.local/opt/pyenv/shims/python3'
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
