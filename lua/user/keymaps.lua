@@ -103,23 +103,6 @@ require'legendary'.bind_keymaps {
     description = 'Open Qt docs for word under cursor',
   },
 
-  -- Perforce
-  { '<Leader>pe', '<cmd>Vp4Edit<CR>', opts=opts,
-    description = 'Vp4: open current file for edit',
-  },
-  { '<Leader>pr', '<cmd>Vp4Revert<CR>', opts=opts,
-    description = 'Vp4: revert current file',
-  },
-  { '<Leader>pd', '<cmd>Vp4Diff<CR>', opts=opts,
-    description = 'Vp4: diff current file',
-  },
-  { '<Leader>pi', '<cmd>Vp4Info<CR>', opts=opts,
-    description = 'Vp4: display info for current file',
-  },
-  { '<Leader>ph', '<cmd>Vp4Filelog<CR>', opts=opts,
-    description = 'Vp4: display history for current file',
-  },
-
   -- Toggle Term
   { '<Leader>TG', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', opts=opts,
     description = 'Open lazygit',
