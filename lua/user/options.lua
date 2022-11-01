@@ -21,7 +21,6 @@ local options = {
     splitright = true,
     swapfile = false,
     termguicolors = true,
-    timeoutlen = 100, -- time to wait for a mapped sequence to complete (ms)
     undofile = true,
     updatetime = 300, -- faster completion (4000ms default)
     writebackup = false,

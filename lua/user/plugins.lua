@@ -95,7 +95,6 @@ return packer.startup(function(use)
   -- Misc
   use 'numToStr/Comment.nvim'
   use 'akinsho/toggleterm.nvim'
-  use 'folke/which-key.nvim'
 
   use 'simnalamburt/vim-mundo' -- undo viewer
   use 'tpope/vim-abolish' -- case sensitive search/replace
