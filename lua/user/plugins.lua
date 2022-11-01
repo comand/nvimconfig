@@ -69,6 +69,7 @@ return packer.startup(function(use)
   }}
   use 'RRethy/vim-illuminate'
   use 'mrjones2014/legendary.nvim'
+  use {'SmiteshP/nvim-navic', requires = 'neovim/nvim-lspconfig'}
 
   -- Snippets
   use {'SirVer/UltiSnips',
