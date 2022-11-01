@@ -7,8 +7,11 @@ local options = {
     conceallevel = 0, -- so that `` is visible in markdown files
     fileencoding = 'utf-8',
     foldmethod = 'marker',
+    foldlevelstart = 0,
     hlsearch = false,
     ignorecase = true,
+    lazyredraw = true,
+    gdefault = true, -- assume /g for :s
     mouse = 'a',
     pumheight = 10,
     showmode = false,
@@ -26,15 +29,24 @@ local options = {
     expandtab = true,
     shiftwidth = 4,
     tabstop = 4,
+    softtabstop = 4,
+    shiftround = true,
+    textwidth = 78,
     cursorline = false, -- highlight the current line
     signcolumn = "yes",
     scrolloff = 8,
     sidescrolloff = 8,
+    showbreak = '↪',
+    wrap = false,
+    grepprg = 'rg --vimgrep --no-heading',
+    grepformat = '%f:%l:%c:%m,%f:%l:%m',
 }
 
 vim.opt.shortmess:append "c"
 vim.opt.listchars:append('eol:↴')
 vim.opt.listchars:append('space:⋅')
+vim.opt.listchars:append('extends:»')
+vim.opt.listchars:append('precedes:«')
 
 for k,v in pairs(options) do
     vim.opt[k] = v
@@ -42,7 +54,7 @@ end
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
+vim.cmd [[set formatoptions-=cro]]
 
 -- vim.g['do_file_type_lua'] = 1
 -- vim.g['did_load_filetypes'] = 0
