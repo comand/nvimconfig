@@ -103,23 +103,6 @@ require'legendary'.bind_keymaps {
     description = 'Open Qt docs for word under cursor',
   },
 
-  -- Toggle Term
-  { '<Leader>TG', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', opts=opts,
-    description = 'Open lazygit',
-  },
-  { '<Leader>TD', '<cmd>lua _NCDU_TOGGLE()<CR>', opts=opts,
-    description = 'Open ncdu',
-  },
-  { '<Leader>TT', '<cmd>lua _HTOP_TOGGLE()<CR>', opts=opts,
-    description = 'Open htop',
-  },
-  { '<Leader>TP', '<cmd>lua _PYTHON_TOGGLE()<CR>', opts=opts,
-    description = 'Open python terminal',
-  },
-  { '<Leader>TB', '<cmd>ToggleTerm size=10 direction=horizontal<CR>', opts=opts,
-    description = 'Open terminal in bottom window',
-  },
-
   -- Legendary
   { '<C-l>', '<cmd>Legendary<CR>', opts=opts,
     description = 'Legendary search',
