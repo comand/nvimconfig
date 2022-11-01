@@ -15,4 +15,8 @@ prettyfold.setup {
     },
   },
 }
-require('pretty-fold.preview').setup()
+
+status_ok, fold_preview = pcall(require, 'fold-preview')
+if status_ok then
+  fold_preview.setup()
+end

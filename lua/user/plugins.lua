@@ -63,7 +63,10 @@ return packer.startup(function(use)
   use 'nvim-lualine/lualine.nvim'
   use {'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim'}
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use {'anuvyklack/pretty-fold.nvim', requires = 'anuvyklack/nvim-keymap-amend'}
+  use {'anuvyklack/fold-preview.nvim', requires = {
+    'anuvyklack/nvim-keymap-amend',
+    'anuvyklack/pretty-fold.nvim'
+  }}
   use 'RRethy/vim-illuminate'
   use 'mrjones2014/legendary.nvim'
 
@@ -89,10 +92,8 @@ return packer.startup(function(use)
   end}
 
   -- Completion
-  use {'hrsh7th/nvim-cmp',
-    requires = { 'quangnguyen30192/cmp-nvim-ultisnips' }}
-  use {'quangnguyen30192/cmp-nvim-ultisnips',
-    requires = { 'SirVer/UltiSnips' }}
+  use {'hrsh7th/nvim-cmp', requires = 'quangnguyen30192/cmp-nvim-ultisnips'}
+  use {'quangnguyen30192/cmp-nvim-ultisnips', requires = 'SirVer/UltiSnips'}
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
