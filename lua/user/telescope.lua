@@ -87,12 +87,31 @@ telescope.setup {
 telescope.load_extension('fzf')
 
 -- Add shortcuts
-local opts = {noremap = true, silent = true}
-vim.api.nvim_set_keymap('n', '<C-b>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)
-vim.api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], opts)
-vim.api.nvim_set_keymap('n', '<C-g>', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], opts)
-vim.api.nvim_set_keymap('n', '<Leader>tm', [[<cmd>lua require('telescope.builtin').marks()<CR>]], opts)
-vim.api.nvim_set_keymap('n', '<Leader>tr', [[<cmd>lua require('telescope.builtin').registers()<CR>]], opts)
-vim.api.nvim_set_keymap('n', '<Leader>tk', [[<cmd>lua require('telescope.builtin').keymaps()<CR>]], opts)
-vim.api.nvim_set_keymap('n', '<Leader>th', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
-vim.api.nvim_set_keymap('n', '<Leader>tc', [[<cmd>lua require('telescope.builtin').commands()<CR>]], opts)
+local legendary_ok, legendary = pcall(require, 'legendary')
+if legendary_ok then
+  local opts = {noremap = true, silent = true}
+  local builtin = require'telescope.builtin'
+  legendary.bind_keymaps {
+    {'<C-b>', builtin.buffers, opts=opts,
+      description = 'Telescope: buffers'
+    },
+    {'<C-e>', function() builtin.find_files{previewer=false} end, opts=opts,
+      description = 'Telescope: find files'
+    },
+    {'<C-g>', builtin.live_grep, opts=opts,
+      description = 'Telescope: live grep'
+    },
+    {'<Leader>tm', builtin.marks, opts=opts,
+      description = 'Telescope: marks'
+    },
+    {'<Leader>tr', builtin.registers, opts=opts,
+      description = 'Telescope: registers'
+    },
+    {'<Leader>tc', builtin.commands, opts=opts,
+      description = 'Telescope: commands'
+    },
+    {'<Leader>th', builtin.help_tags, opts=opts,
+      description = 'Telescope: help tags'
+    },
+  }
+end
