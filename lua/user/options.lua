@@ -55,6 +55,7 @@ for k,v in pairs(options) do
 end
 
 vim.g.python3_host_prog = '/home/comand/.local/opt/pyenv/shims/python3'
+vim.g.loaded_perl_provider = 0
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
