@@ -76,6 +76,12 @@ telescope.setup {
       },
     },
   },
+
+  pickers = {
+    find_files = {
+      find_command = {'fd', '--type', 'f', '--strip-cwd-prefix'},
+    },
+  },
 }
 
 telescope.load_extension('fzf')
@@ -85,4 +91,8 @@ local opts = {noremap = true, silent = true}
 vim.api.nvim_set_keymap('n', '<C-b>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], opts)
 vim.api.nvim_set_keymap('n', '<C-e>', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], opts)
 vim.api.nvim_set_keymap('n', '<C-g>', [[<cmd>lua require('telescope.builtin').live_grep()<CR>]], opts)
-vim.api.nvim_set_keymap('n', '<Leader>gm', [[<cmd>lua require('telescope.builtin').marks()<CR>]], opts)
+vim.api.nvim_set_keymap('n', '<Leader>tm', [[<cmd>lua require('telescope.builtin').marks()<CR>]], opts)
+vim.api.nvim_set_keymap('n', '<Leader>tr', [[<cmd>lua require('telescope.builtin').registers()<CR>]], opts)
+vim.api.nvim_set_keymap('n', '<Leader>tk', [[<cmd>lua require('telescope.builtin').keymaps()<CR>]], opts)
+vim.api.nvim_set_keymap('n', '<Leader>th', [[<cmd>lua require('telescope.builtin').help_tags()<CR>]], opts)
+vim.api.nvim_set_keymap('n', '<Leader>tc', [[<cmd>lua require('telescope.builtin').commands()<CR>]], opts)
