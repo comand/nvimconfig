@@ -113,6 +113,7 @@ return packer.startup(function(use)
   use 'mhinz/vim-signify' -- hunk change markers for perforce
   use 'vim-scripts/a.vim' -- alternate between matching buffers
   use 'wsdjeg/vim-fetch'  -- handle file line numbers on input
+  use 'sam4llis/nvim-lua-gf' -- gf for lua imports/requires
 
   use 'ngemily/vim-vp4'   -- perforce file handling
 
