@@ -3,4 +3,8 @@ if not status_ok then
     return
 end
 
-clangd_extensions.setup()
+clangd_extensions.setup {
+  server = {
+    cmd = {'clangd', '--enable-config'},
+  },
+}
