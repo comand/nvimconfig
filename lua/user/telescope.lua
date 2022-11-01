@@ -103,6 +103,9 @@ if legendary_ok then
     {'<C-g>', builtin.live_grep, opts=opts,
       description = 'Telescope: live grep'
     },
+    {'<Leader>ft', builtin.grep_string, opts=opts,
+      description = 'Telescope: find term'
+    },
     {'<Leader>tl',
       function() builtin.live_grep({grep_open_files=true}) end,
       opts=opts,
