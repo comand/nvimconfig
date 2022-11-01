@@ -48,10 +48,9 @@ end
 
 local function lsp_highlight_document(client)
   local status_ok, illuminate = pcall(require, 'illuminate')
-  if not status_ok then
-    return
+  if status_ok then
+    illuminate.on_attach(client)
   end
-  illuminate.on_attach(client)
 end
 
 local function lsp_keymaps(bufnr)
@@ -75,7 +74,7 @@ local function lsp_keymaps(bufnr)
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({async = true})' ]]
 end
 
 M.on_attach = function(client, bufnr)
@@ -84,6 +83,13 @@ M.on_attach = function(client, bufnr)
   end
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
+
+  if client.server_capabilities.documentSymbolProvider then
+    local has_navic, navic = pcall(require, 'nvim-navic')
+    if has_navic then
+      navic.attach(client, bufnr)
+    end
+  end
 end
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
