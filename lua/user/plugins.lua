@@ -38,9 +38,11 @@ packer.init {
 
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- Have packer manage itself
+  use {'lewis6991/impatient.nvim', config = function()
+    require'impatient'.enable_profile()
+  end}
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
-  use 'lewis6991/impatient.nvim'
   use {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"}
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
