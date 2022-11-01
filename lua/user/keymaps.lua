@@ -62,6 +62,11 @@ keymap("n", "<Leader>w", ":bdelete<CR>", opts)
 -- Build
 keymap("n", "<Leader>m", ":make<CR>", opts)
 
+-- Grok
+-- keymap("n", "<Leader>gf", ":call grok#FullSearch()<CR>", opts)
+-- keymap("n", "<Leader>gd", ":call grok#DefinitionSearch()<CR>", opts)
+-- keymap("n", "<Leader>gs", ":call grok#SymbolSearch()<CR>", opts)
+-- keymap("n", "<Leader>gx", ":call grok#XRef()<CR>", opts)
 
 -- Qt Docs
 keymap("n", "<Leader>qt", ':call QtDoc(expand("<cword>"))<CR>', opts)
