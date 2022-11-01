@@ -70,6 +70,14 @@ return packer.startup(function(use)
   use 'RRethy/vim-illuminate'
   use 'mrjones2014/legendary.nvim'
   use {'SmiteshP/nvim-navic', requires = 'neovim/nvim-lspconfig'}
+  use {'chentoast/marks.nvim',
+    config = function()
+      require'marks'.setup {
+        default_mappings = true,
+        signs = true,
+        mappings = {}
+      }
+    end}
 
   -- Snippets
   use {'SirVer/UltiSnips',
