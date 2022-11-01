@@ -6,6 +6,7 @@ local options = {
     completeopt = {'menuone', 'noselect'},
     conceallevel = 0, -- so that `` is visible in markdown files
     fileencoding = 'utf-8',
+    foldmethod = 'marker',
     hlsearch = false,
     ignorecase = true,
     mouse = 'a',
