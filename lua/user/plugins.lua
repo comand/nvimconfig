@@ -54,6 +54,8 @@ return packer.startup(function(use)
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- UI
+  use 'stevearc/dressing.nvim'
+  use 'rcarriga/nvim-notify'
   use 'EdenEast/nightfox.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'kyazdani42/nvim-web-devicons'
@@ -63,6 +65,7 @@ return packer.startup(function(use)
   use 'anuvyklack/pretty-fold.nvim'
   use 'RRethy/vim-illuminate'
 
+  -- Snippets
   use 'L3MON4D3/LuaSnip'
   use 'rafamadriz/friendly-snippets'
 
