@@ -91,11 +91,7 @@ return packer.startup(function(use)
   --use 'tamago324/nlsp-settings.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'p00f/clangd_extensions.nvim'
-  use {'folke/trouble.nvim',
-    requires = "kyazdani42/nvim-web-devicons",
-    config = function()
-      require'trouble'.setup()
-  end}
+  use {'folke/trouble.nvim', requires = "kyazdani42/nvim-web-devicons"}
   use {'j-hui/fidget.nvim',
     config = function()
       require'fidget'.setup()
