@@ -43,11 +43,11 @@ return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- Have packer manage itself
   use {'lewis6991/impatient.nvim',
     config = function()
+      require'impatient'
       -- require'impatient'.enable_profile()
   end}
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
-  use 'folke/lua-dev.nvim'
 
   -- Tree sitter
   use {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"}
@@ -70,7 +70,9 @@ return packer.startup(function(use)
   -- Snippets
   -- use 'L3MON4D3/LuaSnip'
   -- use 'rafamadriz/friendly-snippets'
-  use 'SirVer/ultisnips'
+  use {'SirVer/UltiSnips',
+    requires = { 'honza/vim-snippets', event = 'InsertEnter' }}
+  use 'honza/vim-snippets'
 
   -- LSP
   use 'neovim/nvim-lspconfig'
@@ -89,14 +91,15 @@ return packer.startup(function(use)
   end}
 
   -- Completion
-  use 'hrsh7th/nvim-cmp'
+  use {'hrsh7th/nvim-cmp',
+    requires = { 'quangnguyen30192/cmp-nvim-ultisnips' }}
+  use {'quangnguyen30192/cmp-nvim-ultisnips',
+    requires = { 'SirVer/UltiSnips' }}
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-path'
   use 'hrsh7th/cmp-cmdline'
   use 'hrsh7th/cmp-nvim-lsp'
   -- use 'saadparwaiz1/cmp_luasnip'
-  use 'quangnguyen30192/cmp-nvim-ultisnips'
-
 
   -- SCM
   use 'tpope/vim-fugitive' -- Git commands in nvim
@@ -115,9 +118,9 @@ return packer.startup(function(use)
   use 'ngemily/vim-vp4'   -- perforce file handling
 
   -- Local
-  use {'/pixar/ws/trees/comand/vim-perforce', opt = true }
-  use {'/pixar/ws/trees/comand/vim-comand-pixar', opt = true }
-  use {'/pixar/ws/trees/comand/grok-vim', opt = true }
+  use '/pixar/ws/trees/comand/vim-perforce'
+  use '/pixar/ws/trees/comand/vim-comand-pixar'
+  use '/pixar/ws/trees/comand/grok-vim'
 
   if PACKER_BOOTSTRAP then
       require("packer").sync()
