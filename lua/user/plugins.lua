@@ -76,9 +76,10 @@ return packer.startup(function(use)
   use 'honza/vim-snippets'
 
   -- LSP
-  use 'neovim/nvim-lspconfig'
-  use 'williamboman/nvim-lsp-installer'
-  use 'tamago324/nlsp-settings.nvim'
+  use {'williamboman/mason.nvim',
+       'williamboman/mason-lspconfig.nvim',
+       'neovim/nvim-lspconfig'}
+  --use 'tamago324/nlsp-settings.nvim'
   use 'jose-elias-alvarez/null-ls.nvim'
   use 'p00f/clangd_extensions.nvim'
   use {'folke/trouble.nvim',
