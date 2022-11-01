@@ -61,9 +61,9 @@ return packer.startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
-  use {'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
+  use {'nvim-telescope/telescope.nvim', requires = 'nvim-lua/plenary.nvim'}
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-  use 'anuvyklack/pretty-fold.nvim'
+  use {'anuvyklack/pretty-fold.nvim', requires = 'anuvyklack/nvim-keymap-amend'}
   use 'RRethy/vim-illuminate'
   use 'mrjones2014/legendary.nvim'
 
