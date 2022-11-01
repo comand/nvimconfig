@@ -12,6 +12,29 @@ vim.g.maplocalleader = ","
 -- Normal Mode
 --
 
+-- Map QQ to ZQ
+keymap("n", "QQ", "ZQ", opts)
+-- Have Y behave like D and C rather than dd and cc (which is already done by yy)
+keymap("n", "Y", "y$", opts)
+
+-- Toggle list on/off
+keymap("n", "\tl", ":set invlist list?<CR>", opts)
+keymap("n", "<F2>", "\tl", {})
+
+-- Toggle number on/off, normal and insert modes
+keymap("n", "\tn", ":set invnumber number?<CR>", opts)
+keymap("n", "<F3>", "\tn", {})
+keymap("i", "<F3>", "<C-O>\tn", {})
+
+-- Toggle paste on/off, normal and insert modes
+keymap("n", "\tp", ":set invpaste paste?<CR>", opts)
+keymap("n", "<F4>", "\tp", {})
+keymap("i", "<F4>", "<C-O>\tp", {})
+vim.o.pastetoggle = '<F4>'
+
+-- Search and replace word under cursor
+keymap("n", "<C-s>", ":%s/<C-R><C-W>/", opts)
+
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
@@ -32,7 +55,16 @@ keymap("n", "<C-p>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
--- 
+-- Change directory to current buffer
+keymap("n", "<Leader>cd", ":cd %:p:h<CR>:pwd<CR>", opts)
+
+-- Close the current buffer
+keymap("n", "<Leader>w", ":bdelete<CR>", opts)
+
+-- Build
+keymap("n", "<Leader>m", ":make<CR>", opts)
+
+--
 -- Insert Mode
 --
 
