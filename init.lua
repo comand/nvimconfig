@@ -15,6 +15,7 @@ require "user.autocommands"
 require "user.prettyfold"
 require "user.signify"
 require "user.alternate"
+require "user.mundo"
 
 if vim.g.neovide then
     require "user.neovide"
