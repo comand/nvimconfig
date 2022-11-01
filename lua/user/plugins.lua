@@ -54,7 +54,7 @@ return packer.startup(function(use)
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   -- UI
-  use 'shaunsingh/solarized.nvim'
+  use 'EdenEast/nightfox.nvim'
   use 'lukas-reineke/indent-blankline.nvim'
   use 'kyazdani42/nvim-web-devicons'
   use 'nvim-lualine/lualine.nvim'
