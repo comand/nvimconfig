@@ -95,11 +95,18 @@ if legendary_ok then
     {'<C-b>', builtin.buffers, opts=opts,
       description = 'Telescope: buffers'
     },
-    {'<C-e>', function() builtin.find_files{previewer=false} end, opts=opts,
+    {'<C-e>',
+      function() builtin.find_files{previewer=false} end,
+      opts=opts,
       description = 'Telescope: find files'
     },
     {'<C-g>', builtin.live_grep, opts=opts,
       description = 'Telescope: live grep'
+    },
+    {'<Leader>tl',
+      function() builtin.live_grep({grep_open_files=true}) end,
+      opts=opts,
+      description = 'Telescope: buffer lines'
     },
     {'<Leader>tm', builtin.marks, opts=opts,
       description = 'Telescope: marks'
