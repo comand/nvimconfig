@@ -12,7 +12,6 @@ local options = {
     ignorecase = true,
     lazyredraw = true,
     gdefault = true, -- assume /g for :s
-    mouse = 'a',
     pumheight = 10,
     showmode = false,
     showtabline = 1,
