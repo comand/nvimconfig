@@ -1,17 +1,12 @@
-local status_ok, mason = pcall(require, "mason") -- Mason must be loaded first
-if not status_ok then
-  return
-end
-
 local servers = {
-    'sumneko_lua',
-    'pyright',
     'clangd',
-    'rust_analyzer',
     'jsonls',
-  },
+    'pyright',
+    'rust_analyzer',
+    'sumneko_lua',
+}
 
-mason.setup()
+require'mason'.setup()
 require'mason-lspconfig'.setup({
   ensure_installed = servers,
 })

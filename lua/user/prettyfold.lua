@@ -1,5 +1,5 @@
-status_ok, prettyfold = pcall(require, 'pretty-fold')
-if not status_ok then
+local pf_ok, prettyfold = pcall(require, 'pretty-fold')
+if not pf_ok then
   return
 end
 
@@ -16,7 +16,7 @@ prettyfold.setup {
   },
 }
 
-status_ok, fold_preview = pcall(require, 'fold-preview')
-if status_ok then
+local fp_ok, fold_preview = pcall(require, 'fold-preview')
+if fp_ok then
   fold_preview.setup()
 end

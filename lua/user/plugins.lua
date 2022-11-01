@@ -85,11 +85,11 @@ return packer.startup(function(use)
   use {'folke/trouble.nvim',
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
-      require("trouble").setup { }
+      require'trouble'.setup()
   end}
   use {'j-hui/fidget.nvim',
     config = function()
-      require'fidget'.setup { }
+      require'fidget'.setup()
   end}
 
   -- Completion
