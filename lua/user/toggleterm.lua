@@ -64,7 +64,7 @@ end
 local legendary_ok, legendary = pcall(require, 'legendary')
 if legendary_ok then
   local opts = {noremap = true, silent = true}
-  legendary.bind_keymaps {
+  legendary.keymaps {
     { '<Leader>TG', '<cmd>lua _LAZYGIT_TOGGLE()<CR>', opts=opts,
       description = 'Open lazygit',
     },

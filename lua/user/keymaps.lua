@@ -4,7 +4,12 @@ local opts = {noremap = true, silent = true}
 vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
-require'legendary'.bind_keymaps {
+local status, legendary = pcall(require, 'legendary')
+if not status then
+  return
+end
+
+legendary.keymaps {
   -- Basic
   { 'QQ',  'ZQ', opts=opts },
   { 'Y',   'y$', opts=opts }, -- Make Y behave like D and C rather than dd and cc instead of yy

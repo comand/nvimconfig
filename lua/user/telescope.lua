@@ -91,7 +91,7 @@ local legendary_ok, legendary = pcall(require, 'legendary')
 if legendary_ok then
   local opts = {noremap = true, silent = true}
   local builtin = require'telescope.builtin'
-  legendary.bind_keymaps {
+  legendary.keymaps {
     {'<C-b>', builtin.buffers, opts=opts,
       description = 'Telescope: buffers'
     },

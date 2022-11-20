@@ -2,7 +2,7 @@
 local legendary_ok, legendary = pcall(require, 'legendary')
 if legendary_ok then
   local opts = {noremap = true, silent = true}
-  legendary.bind_keymaps {
+  legendary.keymaps {
     { '<Leader>gd', ':call grok#DefinitionSearch()<CR>', opts=opts,
       description = 'Grok definition search word under cursor',
     },
