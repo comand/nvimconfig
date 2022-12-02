@@ -50,7 +50,10 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim"
 
   -- Tree sitter
-  use {'nvim-treesitter/nvim-treesitter', run=":TSUpdate"}
+  use {'nvim-treesitter/nvim-treesitter',
+    run = function()
+      require'nvim-treesitter.install'.update({with_sync = true})()
+    end}
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'JoosepAlviste/nvim-ts-context-commentstring'
 
