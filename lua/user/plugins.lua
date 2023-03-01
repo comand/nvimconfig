@@ -49,6 +49,8 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
 
+  use 'dstein64/vim-startuptime'
+
   -- Tree sitter
   use {'nvim-treesitter/nvim-treesitter',
     run = function()
