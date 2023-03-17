@@ -4,11 +4,15 @@ local servers = {
     'pyright',
     'rust_analyzer',
     'sumneko_lua',
+    'ruff_lsp',
 }
 
 require'mason'.setup()
 require'mason-lspconfig'.setup({
   ensure_installed = servers,
+})
+require'mason-null-ls'.setup({
+  automatic_setup = true
 })
 
 local lspconfig = require'lspconfig'
@@ -22,8 +26,8 @@ for _, server in pairs(servers) do
   local has_custom_opts, server_custom_opts = pcall(require, 'user.lsp.settings.' .. server)
   if has_custom_opts then
     opts = vim.tbl_deep_extend('force', opts, server_custom_opts)
+    --[[ print(server) ]]
+    --[[ print(vim.inspect(opts)) ]]
   end
   lspconfig[server].setup(opts)
 end
-
-require "user.lsp.null-ls"

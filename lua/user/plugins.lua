@@ -90,11 +90,13 @@ return packer.startup(function(use)
   use 'honza/vim-snippets'
 
   -- LSP
-  use {'williamboman/mason.nvim',
-       'williamboman/mason-lspconfig.nvim',
-       'neovim/nvim-lspconfig'}
-  --use 'tamago324/nlsp-settings.nvim'
-  use 'jose-elias-alvarez/null-ls.nvim'
+  use {
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    'neovim/nvim-lspconfig',
+    'jose-elias-alvarez/null-ls.nvim',
+    'jay-babu/mason-null-ls.nvim'
+  }
   use 'p00f/clangd_extensions.nvim'
   use {'folke/trouble.nvim', requires = "kyazdani42/nvim-web-devicons"}
   use {'j-hui/fidget.nvim',
