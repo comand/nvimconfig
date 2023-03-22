@@ -42,8 +42,6 @@ local options = {
     mousemodel = 'popup_setpos',
 }
 
-vim.cmd [[vmap <LeftRelease> "*ygv]]
-
 vim.opt.shortmess:append "c"
 vim.opt.listchars:append('eol:↴')
 vim.opt.listchars:append('space:⋅')

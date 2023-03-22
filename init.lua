@@ -1,21 +1,37 @@
-require "user.plugins"
-require "user.options"
-require "user.keymaps"
-require "user.colorscheme"
-require "user.cmp"
-require "user.lsp"
-require "user.telescope"
-require "user.treesitter"
-require "user.comment"
-require "user.lualine"
-require "user.toggleterm"
-require "user.indentline"
-require "user.autocommands"
-require "user.prettyfold"
-require "user.fugitive"
-require "user.signify"
-require "user.alternate"
-require "user.mundo"
-require "user.illuminate"
-require "user.vp4"
-require "user.grok"
+-- Set leader -- must happen before plugins are required.
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
+
+-- Plugin Manager Preamble {{{
+-- Install package manager
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    'git',
+    'clone',
+    '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git',
+    '--branch=stable',
+    lazypath,
+  }
+end
+
+vim.opt.rtp:prepend(lazypath)
+-- }}}
+
+require('lazy').setup {
+  { -- Color Scheme
+    'EdenEast/nightfox.nvim',
+    priority = 1000,
+    config = function()
+      vim.o.background = 'light'
+      vim.cmd.colorscheme 'dawnfox'
+    end,
+  },
+  { import = 'plugins' },
+  --{ import = 'plugins.site' },
+}
+
+require('config.options')
+require('config.autocommands')
+require('config.keymaps')
