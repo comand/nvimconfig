@@ -5,7 +5,7 @@ local servers = {
   'pyright',
   'rust_analyzer',
   'lua_ls',
-  'ruff_lsp',
+  --'ruff_lsp',
 }
 
 return {
@@ -31,7 +31,7 @@ return {
     },
 
     config = function(_, opts)
-      require('mason').setup {}
+      require('mason').setup(opts)
       require('mason-lspconfig').setup { ensure_installed = servers }
 
       local lspconfig = require('lspconfig')
@@ -42,7 +42,7 @@ return {
           on_attach = handlers.on_attach,
           capabilities = handlers.capabilities,
         }
-        local has_custom_opts, server_custom_opts = pcall(require, 'plugins.lsp.settiongs.' .. server)
+        local has_custom_opts, server_custom_opts = pcall(require, 'plugins.lsp.settings.' .. server)
         if has_custom_opts then
           s_opts = vim.tbl_deep_extend('force', s_opts, server_custom_opts)
         end
@@ -74,5 +74,4 @@ return {
       vim.keymap.set('n', '<leader>xx', require'trouble'.toggle, { noremap = true, desc = 'Trouble: toggle list' })
     end,
   },
-
 }
