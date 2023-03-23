@@ -84,8 +84,6 @@ local function lsp_keymaps(bufnr)
       vim.lsp.buf.formatting()
     end
   end, { desc = 'Format current buffer with LSP' })
-
-  nmap('<leader>xx', require'trouble'.toggle, 'Trouble: toggle list')
 end
 
 M.on_attach = function(client, bufnr)

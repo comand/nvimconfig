@@ -70,6 +70,9 @@ return {
     dependencies = {
       'kyazdani42/nvim-web-devicons',
     },
+    config = function()
+      vim.keymap.set('n', '<leader>xx', require'trouble'.toggle, { noremap = true, desc = 'Trouble: toggle list' })
+    end,
   },
 
 }
