@@ -44,6 +44,7 @@ return {
 
   {
     "vim-scripts/a.vim",
+    ft = {"c", "cpp"},
     keys = {
       { "<C-H>", ":A<CR>", desc = "Switch to alternate buffer" },
     },
