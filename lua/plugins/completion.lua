@@ -47,6 +47,7 @@ return {
 
     config = function()
       local cmp = require('cmp')
+      local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
       cmp.setup  {
         snippet = {
           expand = function(args)
@@ -71,10 +72,10 @@ return {
           -- Set `select` to `false` to only confirm explicitly selected items.
           ["<CR>"] = cmp.mapping.confirm({ select = false }),
           ["<Tab>"] = cmp.mapping(function(fallback)
-            require("cmp_ultisnips_mappings").expand_or_jump_forwards(fallback)
+            cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
           end, { "i", "s" }),
           ["<S-Tab>"] = cmp.mapping(function(fallback)
-            require("cmp_ultisnips_mappings").jump_backwards(fallback)
+            cmp_ultisnips_mappings.jump_backwards(fallback)
           end, { "i", "s" }),
         },
         formatting = {
