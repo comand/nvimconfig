@@ -1,56 +1,55 @@
-local options = {
-    backup = false,
-    breakindent = true,
-    clipboard = 'unnamedplus',
-    cmdheight = 1,
-    completeopt = {'menu', 'menuone', 'noselect'},
-    conceallevel = 0, -- so that `` is visible in markdown files
-    fileencoding = 'utf-8',
-    foldmethod = 'marker',
-    foldlevelstart = 0,
-    hlsearch = false,
-    ignorecase = true,
-    lazyredraw = true,
-    gdefault = true, -- assume /g for :s
-    pumheight = 10,
-    showmode = false,
-    showtabline = 1,
-    smartcase = true,
-    smartindent = true,
-    splitbelow = true,
-    splitright = true,
-    swapfile = false,
-    termguicolors = true,
-    undofile = true,
-    updatetime = 300, -- faster completion (4000ms default)
-    writebackup = false,
-    expandtab = true,
-    shiftwidth = 4,
-    tabstop = 4,
-    softtabstop = 4,
-    shiftround = true,
-    textwidth = 78,
-    cursorline = false, -- highlight the current line
-    signcolumn = "yes",
-    scrolloff = 8,
-    sidescrolloff = 8,
-    --showbreak = '↪',
-    wrap = false,
-    grepprg = 'rg --vimgrep --no-heading',
-    grepformat = '%f:%l:%c:%m,%f:%l:%m',
-    mouse = 'a',
-    mousemodel = 'popup_setpos',
-}
+vim.g.mapleader = ','
+vim.g.maplocalleader = ','
+vim.g.no_plugin_maps = true -- ??
+
+vim.opt.backup = false
+vim.opt.breakindent = true
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.cmdheight = 1
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
+vim.opt.cursorline = false -- highlight the current line
+vim.opt.expandtab = true
+vim.opt.fileencoding = 'utf-8'
+vim.opt.foldlevelstart = 0
+vim.opt.foldmethod = 'marker'
+vim.opt.gdefault = true -- assume /g for :s
+vim.opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+vim.opt.grepprg = 'rg --vimgrep --no-heading'
+vim.opt.hlsearch = false
+vim.opt.ignorecase = true
+vim.opt.inccommand = 'split'
+vim.opt.lazyredraw = true
+vim.opt.mouse = 'a'
+vim.opt.mousemodel = 'popup_setpos'
+vim.opt.pumheight = 10
+vim.opt.scrolloff = 8
+vim.opt.shiftround = true
+vim.opt.shiftwidth = 4
+--vim.opt.showbreak = '↪'
+vim.opt.showmode = false
+vim.opt.showtabline = 1
+vim.opt.sidescrolloff = 8
+vim.opt.signcolumn = "yes"
+vim.opt.smartcase = true
+vim.opt.smartindent = true
+vim.opt.softtabstop = 4
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.opt.swapfile = false
+vim.opt.tabstop = 4
+vim.opt.termguicolors = true
+vim.opt.textwidth = 78
+vim.opt.undofile = true
+vim.opt.updatetime = 300 -- faster completion (4000ms default)
+vim.opt.wrap = false
+vim.opt.writebackup = false
 
 vim.opt.shortmess:append "c"
 vim.opt.listchars:append('eol:↴')
 vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('extends:»')
 vim.opt.listchars:append('precedes:«')
-
-for k,v in pairs(options) do
-    vim.opt[k] = v
-end
 
 vim.g.python3_host_prog = '/home/comand/.local/opt/pyenv/shims/python3'
 vim.g.loaded_perl_provider = 0
