@@ -18,6 +18,7 @@ return {
 
   {
     "numToStr/Comment.nvim",
+    event = 'BufReadPost',
     opts = {
       pre_hook = function(ctx)
         local U = require("Comment.utils")
