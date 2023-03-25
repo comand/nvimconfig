@@ -1,7 +1,8 @@
 return {
-  "tpope/vim-abolish", -- case aware search/replace
-  "tpope/vim-eunuch", -- file mode utilities
-  "wsdjeg/vim-fetch", -- goto file line numbers on startup
+  "tpope/vim-abolish",      -- case aware search/replace
+  "tpope/vim-eunuch",       -- file mode utilities
+  "wsdjeg/vim-fetch",       -- goto file line numbers on startup
+  'sam4llis/nvim-lua-gf',   -- gf for lua imports/requires
 
   {
     "simnalamburt/vim-mundo",
@@ -32,6 +33,87 @@ return {
           location = location,
         })
       end,
+    },
+  },
+
+  {
+    'danymat/neogen',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+    opts = {
+      enabled = true,
+      languages = {
+        python = { template = { annotation_convention = 'numpydoc' } },
+      },
+    },
+    keys = {
+      {
+        '<C-;>',
+        function()
+          require('neogen').generate()
+        end,
+        desc = 'Generate documentation',
+      },
+    },
+  },
+
+  {
+    "echasnovski/mini.surround",
+    event = "BufReadPost",
+    version = false,
+    opts = {},
+    config = function(_, opts)
+      require("mini.surround").setup(opts)
+    end,
+  },
+
+  {
+    'folke/trouble.nvim',
+    dependencies = {
+      'kyazdani42/nvim-web-devicons',
+    },
+    cmd = {'TroubleToggle', 'Trouble'},
+    opts = {
+      use_diagnostic_signs = true,
+    },
+    keys = {
+      { '<leader>m', '<cmd>TroubleToggle document_diagnostics<CR>', desc = 'Show document diagnostics' },
+      { '<leader>M', '<cmd>TroubleToggle workspace_diagnostics<CR>', desc = 'Show workspace diagnostics' },
+      { '<leader>L', '<cmd>TroubleToggle loclist<CR>', desc = 'Show location list' },
+      { '<leader>U', '<cmd>TroubleToggle quickfix<CR>', desc = 'Show quickfix list' },
+      {
+        '[q',
+        function()
+          if require('trouble').is_open() then
+            require('trouble').previous({ skip_groups = true, jump = true })
+          else
+            local ok, _ = pcall(vim.cmd, 'cprev')
+            if not ok then
+              ok, _ = pcall(vim.cmd, 'clast')
+              if not ok then
+                  print('No errors')
+              end
+            end
+          end
+        end,
+        desc = 'Previous trouble/quickfix item',
+      },
+      {
+        '[q',
+        function()
+          if require('trouble').is_open() then
+            require('trouble').previous({ skip_groups = true, jump = true })
+          else
+            local ok, _ = pcall(vim.cmd, 'cnext')
+            if not ok then
+              ok, _ = pcall(vim.cmd, 'cfirst')
+              if not ok then
+                  print('No errors')
+              end
+            end
+          end
+        end,
+        desc = 'Next trouble/quickfix item',
+      },
     },
   },
 

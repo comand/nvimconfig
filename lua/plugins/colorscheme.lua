@@ -4,10 +4,10 @@ return {
     opts = {
       options = {
         terminal_colors = true,
-        dim_inactive = true,
+        --dim_inactive = true,
         module_default = true,
         styles = { -- Style to be applied to different syntax groups
-          comments = "italic", -- Value is any valid attr-list value `:help attr-list`
+          --comments = "italic", -- Value is any valid attr-list value `:help attr-list`
           conditionals = "NONE",
           constants = "NONE",
           functions = "NONE",
@@ -15,7 +15,7 @@ return {
           numbers = "NONE",
           operators = "NONE",
           strings = "NONE",
-          types = "bold",
+          --types = "bold",
           variables = "NONE",
         },
         inverse = { -- Inverse highlight for different types

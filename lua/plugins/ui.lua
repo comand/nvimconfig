@@ -1,4 +1,6 @@
 return {
+  'kyazdani42/nvim-web-devicons',   -- file type icons, etc.
+
   {
     "rcarriga/nvim-notify",
     keys = {
@@ -40,7 +42,7 @@ return {
     dependencies = {
       "SmiteshP/nvim-navic",
     },
-    config = function(_, opts)
+    config = function()
       local navic = require("nvim-navic")
       require("lualine").setup({
         extensions = {
@@ -107,7 +109,7 @@ return {
 
   {
     "mhinz/vim-signify",
-    config = function(_, opts)
+    config = function()
       vim.g.signify_sign_add = "┃"
       vim.g.signify_sign_delete_first_line = "ᐅ"
       vim.g.signify_sign_change = "┇"
@@ -124,7 +126,7 @@ return {
 
   {
     "RRethy/vim-illuminate",
-    config = function(_, opts)
+    config = function()
       vim.g.Illuminate_delay = 500
     end,
   },
@@ -150,8 +152,4 @@ return {
       },
     },
   },
-
-  "sam4llis/nvim-lua-gf", -- gf for lua imports/requires
-
-  { "kyazdani42/nvim-web-devicons", lazy = true },
 }
