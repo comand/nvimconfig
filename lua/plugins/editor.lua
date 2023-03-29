@@ -57,44 +57,10 @@ return {
       use_diagnostic_signs = true,
     },
     keys = {
-      { '<leader>m', '<cmd>TroubleToggle document_diagnostics<CR>', desc = 'Show document diagnostics' },
-      { '<leader>M', '<cmd>TroubleToggle workspace_diagnostics<CR>', desc = 'Show workspace diagnostics' },
+      { '<leader>x', '<cmd>TroubleToggle document_diagnostics<CR>', desc = 'Show document diagnostics' },
+      { '<leader>X', '<cmd>TroubleToggle workspace_diagnostics<CR>', desc = 'Show workspace diagnostics' },
       { '<leader>L', '<cmd>TroubleToggle loclist<CR>', desc = 'Show location list' },
       { '<leader>U', '<cmd>TroubleToggle quickfix<CR>', desc = 'Show quickfix list' },
-      {
-        '[q',
-        function()
-          if require('trouble').is_open() then
-            require('trouble').previous({ skip_groups = true, jump = true })
-          else
-            local ok, _ = pcall(vim.cmd, 'cprev')
-            if not ok then
-              ok, _ = pcall(vim.cmd, 'clast')
-              if not ok then
-                  print('No errors')
-              end
-            end
-          end
-        end,
-        desc = 'Previous trouble/quickfix item',
-      },
-      {
-        '[q',
-        function()
-          if require('trouble').is_open() then
-            require('trouble').previous({ skip_groups = true, jump = true })
-          else
-            local ok, _ = pcall(vim.cmd, 'cnext')
-            if not ok then
-              ok, _ = pcall(vim.cmd, 'cfirst')
-              if not ok then
-                  print('No errors')
-              end
-            end
-          end
-        end,
-        desc = 'Next trouble/quickfix item',
-      },
     },
   },
 
