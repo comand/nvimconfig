@@ -38,26 +38,6 @@ return {
   },
 
   {
-    'danymat/neogen',
-    dependencies = 'nvim-treesitter/nvim-treesitter',
-    opts = {
-      enabled = true,
-      languages = {
-        python = { template = { annotation_convention = 'numpydoc' } },
-      },
-    },
-    keys = {
-      {
-        '<C-;>',
-        function()
-          require('neogen').generate()
-        end,
-        desc = 'Generate documentation',
-      },
-    },
-  },
-
-  {
     "echasnovski/mini.surround",
     event = "BufReadPost",
     version = false,
