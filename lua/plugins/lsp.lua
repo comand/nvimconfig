@@ -9,7 +9,6 @@ return {
       'p00f/clangd_extensions.nvim',
       'ray-x/lsp_signature.nvim',
       {'j-hui/fidget.nvim', opts = {} },
-      'folke/neodev.nvim',
     },
 
     opts = {
@@ -135,9 +134,6 @@ return {
         border = 'rounded',
         width = 60,
       })
-
-      -- Neodev
-      require('neodev').setup()
 
       -- LSP config
       local capabilities = vim.lsp.protocol.make_client_capabilities()
