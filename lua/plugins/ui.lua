@@ -38,6 +38,22 @@ return {
   },
 
   {
+    "SmiteshP/nvim-navic",
+    config = function(_, opts)
+      local icons = {}
+      for name,text in pairs(require('config.icons').kinds) do
+        icons[name] = text .. ' '
+      end
+      require('nvim-navic').setup {
+        icons = icons,
+        separator = '  ',
+        depth_limit_indicator = '…',
+        depth_limit = 4,
+      }
+    end,
+  },
+
+  {
     "nvim-lualine/lualine.nvim",
     dependencies = {
       "SmiteshP/nvim-navic",
