@@ -5,10 +5,9 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       {
-        -- "MunifTanjim/nui.nvim",
         "mfussenegger/nvim-dap",
         dependencies = {
-          { "jayp0521/mason-nvim-dap.nvim" },
+          { "jayp0521/mason-nvim-dap.nvim", opts = {} },
         },
         opts = {},
         config = function(_, opts)
@@ -105,15 +104,5 @@ return {
         dapui.close()
       end
     end,
-  },
-
-  {
-    "jayp0521/mason-nvim-dap.nvim",
-    dependencies = {
-      { "VonHeikemen/lsp-zero.nvim" },
-    },
-    opts = {
-      ensure_installed = {},
-    },
   },
 }
