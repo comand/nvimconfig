@@ -42,48 +42,52 @@ return {
     dependencies = {
       "SmiteshP/nvim-navic",
     },
-    config = function()
-      local navic = require("nvim-navic")
-      require("lualine").setup({
-        extensions = {
-          "fugitive",
-          "man",
-          "mundo",
-          "quickfix",
+    opts = {
+      extensions = {
+        "fugitive",
+        "man",
+        "mundo",
+        "quickfix",
+        "toggleterm",
+      },
+      disabled_filetypes = {
+        statusline = {},
+        winbar = {
+          "help",
+          "Trouble",
+          "packer",
           "toggleterm",
         },
-        disabled_filetypes = {
-          statusline = {},
-          winbar = {
-            "help",
-            "Trouble",
-            "packer",
-            "toggleterm",
-          },
+      },
+      sections = {
+        lualine_b = {
+          "branch",
+          "diagnostics",
         },
-        sections = {
-          lualine_b = {
-            "branch",
-            "diagnostics",
-          },
-          lualine_c = {
-            {
-              "filename",
-              file_status = true,
-              path = 1,
-              symbols = {
-                modified = " ",
-                readonly = " ",
-              },
+        lualine_c = {
+          {
+            "filename",
+            file_status = true,
+            path = 1,
+            symbols = {
+              modified = " ",
+              readonly = " ",
             },
-            { navic.get_location, cond = navic.is_available },
           },
-          lualine_x = {
-            "filetype",
+          {
+            function()
+              return require('nvim-navic').get_location()
+            end,
+            cond = function()
+              return require('nvim-navic').is_available()
+            end,
           },
         },
-      })
-    end,
+        lualine_x = {
+          "filetype",
+        },
+      },
+    },
   },
 
   {

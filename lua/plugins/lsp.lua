@@ -14,18 +14,35 @@ return {
 
     opts = {
       diagnostic = {
-        underline = { severity = { min = vim.diagnostic.severity.WARN } },
-        update_in_insert = true,
         virtual_text = { spacing = 4, prefix = '●' },
+        signs = true,
+        sign_icons = {
+          { name = 'DiagnosticSignError', text = require('config.icons').diagnostics.error },
+          { name = 'DiagnosticSignWarn',  text = require('config.icons').diagnostics.warn  },
+          { name = 'DiagnosticSignHint',  text = require('config.icons').diagnostics.hint  },
+          { name = 'DiagnosticSignInfo',  text = require('config.icons').diagnostics.info  },
+        },
+        update_in_insert = false,
+        underline = { severity = { min = vim.diagnostic.severity.WARN } },
         severity_sort = true,
+        float = {
+          focusable = false,
+          style = 'minimal',
+          border = 'rounded',
+          source = 'always',
+          header = '',
+          prefix = '',
+        },
       },
 
       servers = {
         bashls = {},
         clangd = {},
         jsonls = {},
+        rust_analyzer = {},
 
         pyright = {
+          single_file_support = true,
           settings = {
             python = {
               analysis = {
@@ -42,27 +59,18 @@ return {
             globals = {'vim'},
           },
           workspace = {
+            checkThirdParty = false,
+            telemetry = { enable = false },
             library = {
               [vim.fn.expand("$VIMRUNTIME/lua")] = true,
               [vim.fn.stdpath("config") .. "/lua"] = true,
             },
           },
         },
-
-        rust_analyzer = {},
       },
     },
 
     config = function(_, opts)
-      require('neodev').setup()
-
-      -- Language Server
-      require('mason').setup()
-      local mason_lspconfig = require('mason-lspconfig')
-      mason_lspconfig.setup {
-        ensure_installed = vim.tbl_keys(opts.servers)
-      }
-
       local on_attach = function(client, bufnr)
         -- LSP signature
         require('lsp_signature').on_attach({
@@ -71,9 +79,18 @@ return {
           doc_lines = 3,
         }, bufnr)
 
-        -- set the tagfunc to use lsp-definition
+        -- Navic
+        if client.server_capabilities.documentSymbolProvider then
+          require('nvim-navic').attach(client, bufnr)
+        end
+
+        -- Illuminate
+        require('illuminate').on_attach(client)
+
+        -- Set the tagfunc to use lsp-definition
         vim.api.nvim_buf_set_option(bufnr, 'tagfunc', 'v:lua.vim.lsp.tagfunc')
 
+        -- Bind LSP keys
         local map = function(m, lhs, rhs, desc)
           vim.keymap.set(m, lhs, rhs,
             { remap = false, silent = true, buffer = bufnr, desc = desc })
@@ -100,41 +117,67 @@ return {
         map('n', '<leader>ws',
           require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace symbols')
         map('n', '<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
-
-        -- Set up LSP highlight if available
-        if client.server_capabilities.documentHighlightProvider then
-          vim.api.nvim_create_augroup('lsp_document_highlight', { clear = true })
-          vim.api.nvim_clear_autocmds({ buffer = bufnr, group = 'lsp_document_highlight' })
-          vim.api.nvim_create_autocmd('CursorHold', {
-            callback = vim.lsp.buf.document_highlight,
-            buffer = bufnr,
-            group = 'lsp_document_highlight',
-            desc = 'Document Highlight',
-          })
-          vim.api.nvim_create_autocmd('CursorMoved', {
-            callback = vim.lsp.buf.clear_references,
-            buffer = bufnr,
-            group = 'lsp_document_highlight',
-            desc = 'Clear All References',
-          })
-        end
       end
 
+      -- Set up diagnostics.
+      vim.diagnostic.config(opts.diagnostic)
+      for _, sign in ipairs(opts.diagnostic.sign_icons) do
+        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
+      end
+
+      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = 'rounded',
+        width = 60,
+      })
+      vim.lsp.signatureHelp = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = 'rounded',
+        width = 60,
+      })
+
+      -- Neodev
+      require('neodev').setup()
+
+      -- LSP config
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
+      require('mason').setup()
+
+      local mason_lspconfig = require('mason-lspconfig')
+      mason_lspconfig.setup {
+        ensure_installed = vim.tbl_keys(opts.servers)
+      }
+
       mason_lspconfig.setup_handlers {
+        -- Default config
         function(server_name)
           require('lspconfig')[server_name].setup {
             capabilities = capabilities,
             on_attach = on_attach,
             settings = opts.servers[server_name],
+            flags = { debounce_text_changes = 150 },
+          }
+        end,
+
+        -- Custom configs
+        ['clangd'] = function ()
+          require('clangd_extensions').setup {
+            server = {
+              cmd = {'clangd', '--enable-config', '--limit-results=0'},
+              capabilities = capabilities,
+              settings = opts.servers.clangd,
+              flags = { debounce_text_changes = 150 },
+              on_attach = function(client, bufnr)
+                on_attach(client, bufnr)
+                vim.keymap.set('n', '<C-H>', ':ClangdSwitchSourceHeader<CR>',
+                  { remap = false, silent = true, buffer = bufnr,
+                    desc = 'Switch to source/header file' })
+              end,
+            },
           }
         end,
       }
 
-      -- Set up diagnostics
-      vim.diagnostic.config(opts.diagnostic)
     end,
   },
 }
