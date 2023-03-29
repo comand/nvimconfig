@@ -55,15 +55,17 @@ return {
         },
 
         lua_ls = {
-          diagnostics = {
-            globals = {'vim'},
-          },
-          workspace = {
-            checkThirdParty = false,
-            telemetry = { enable = false },
-            library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.stdpath("config") .. "/lua"] = true,
+          Lua = {
+            diagnostics = {
+              globals = {'vim'},
+            },
+            workspace = {
+              checkThirdParty = false,
+              telemetry = { enable = false },
+              library = {
+                [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                [vim.fn.stdpath("config") .. "/lua"] = true,
+              },
             },
           },
         },
