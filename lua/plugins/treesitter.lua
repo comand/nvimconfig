@@ -45,8 +45,8 @@ return {
         additional_vim_regex_highlighting = true,
       },
       indent = {
-        enable = true,
-        disable = { "yaml", "python" },
+        enable = false,
+        --disable = { "yaml", "python" },
       },
       context_commentstring = {
         enable = true,
