@@ -7,6 +7,8 @@ return {
     },
     config = function()
       local telescope = require('telescope')
+      telescope.load_extension("fzf")
+
       local actions = require('telescope.actions')
 
       telescope.setup {
@@ -14,6 +16,12 @@ return {
           prompt_prefix = " ",
           selection_caret = " ",
           path_display = { "smart" },
+          layout_strategy = 'vertical',
+          layout_config = {
+            height = vim.o.lines,
+            width = vim.o.columns,
+            preview_height = 0.6,
+          },
 
           mappings = {
             i = {
@@ -87,12 +95,11 @@ return {
         },
       }
 
-      telescope.load_extension("fzf")
       local builtin = require('telescope.builtin')
 
-      vim.keymap.set('n', '<C-b>', builtin.buffers,
+      vim.keymap.set('n', '<C-b>', function() builtin.buffers { previewer = false } end,
         { noremap = true, silent = true, desc = 'Telescope: buffers' })
-      vim.keymap.set('n', '<C-e>', function() builtin.find_files({ previewer = false }) end,
+      vim.keymap.set('n', '<C-e>', builtin.find_files,
         { noremap = true, silent = true, desc = 'Telescope: find files' })
       vim.keymap.set('n', '<C-g>', builtin.live_grep,
         { noremap = true, silent = true, desc = 'Telescope: live grep' })
