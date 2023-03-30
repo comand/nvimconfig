@@ -81,6 +81,7 @@ return {
         },
         sources = {
           { name = "nvim_lsp" },
+          { name = "nvim_lua" },
           { name = "ultisnips" },
           { name = "buffer" },
           { name = "path" },
