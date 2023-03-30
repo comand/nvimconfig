@@ -114,8 +114,8 @@ return {
           require('telescope.builtin').lsp_references, 'Show references')
         map('n', '<leader>ds',
           require('telescope.builtin').lsp_document_symbols, 'Document symbols')
-        map('n', '<leader>ws',
-          require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace symbols')
+        --[[ map('n', '<leader>ws', ]]
+        --[[   require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace symbols') ]]
         map('n', '<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
       end
 
