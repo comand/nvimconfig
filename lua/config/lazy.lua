@@ -13,12 +13,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup {
-  spec = {
-    { import = "plugins" },
-  },
+  spec = { { import = "plugins" } },
   defaults = {
-    --lazy = true, -- every plugin is lazy-loaded by default
-    --version = "*", -- try installing the latest stable version for plugins that support semver
+    lazy = true, -- every plugin is lazy-loaded by default
   },
   install = { colorscheme = { "dawnfox", "solarized" } },
   -- checker = { enabled = true }, -- automatically check for plugin updates

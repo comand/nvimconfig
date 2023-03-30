@@ -6,7 +6,7 @@ return {
       "JoosepAlviste/nvim-ts-context-commentstring",
     },
     build = ":TSUpdate",
-    event = { "BufReadPost", "BufNewFile" },
+    event = "BufReadPost",
     opts = {
       ensure_installed = {
         "bash",

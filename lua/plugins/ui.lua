@@ -3,6 +3,7 @@ return {
 
   {
     "rcarriga/nvim-notify",
+    event = 'VeryLazy',
     keys = {
       {
         "<Leader>un",
@@ -25,6 +26,7 @@ return {
 
   {
     "stevearc/dressing.nvim",
+    event = 'VeryLazy',
     init = function()
       vim.ui.select = function(...)
         require("lazy").load({ plugins = { "dressing.nvim" } })
@@ -39,7 +41,8 @@ return {
 
   {
     "SmiteshP/nvim-navic",
-    config = function(_, opts)
+    event = { 'BufReadPost', 'BufNewFile' },
+    config = function ()
       local icons = {}
       for name,text in pairs(require('config.icons').kinds) do
         icons[name] = text .. ' '
@@ -55,6 +58,7 @@ return {
 
   {
     "nvim-lualine/lualine.nvim",
+    event = 'VeryLazy',
     dependencies = {
       "SmiteshP/nvim-navic",
     },
@@ -120,6 +124,7 @@ return {
 
   {
     "chentoast/marks.nvim",
+    event = { 'BufReadPost', 'BufNewFile' },
     opts = {
       default_mappings = true,
       signs = true,
@@ -129,6 +134,7 @@ return {
 
   {
     "mhinz/vim-signify",
+    event = { 'BufReadPost', 'BufNewFile' },
     config = function()
       vim.g.signify_sign_add = "┃"
       vim.g.signify_sign_delete_first_line = "ᐅ"
@@ -146,6 +152,7 @@ return {
 
   {
     "RRethy/vim-illuminate",
+    event = { 'BufReadPost', 'BufNewFile' },
     config = function()
       vim.g.Illuminate_delay = 500
     end,
@@ -153,6 +160,7 @@ return {
 
   {
     "anuvyklack/pretty-fold.nvim",
+    event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
       "anuvyklack/nvim-keymap-amend",
     },

@@ -1,6 +1,7 @@
 return {
   {
     "SirVer/UltiSnips",
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       "honza/vim-snippets",
     },
@@ -8,6 +9,7 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
