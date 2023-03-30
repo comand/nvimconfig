@@ -81,4 +81,25 @@ return {
       { "<Leader>ge", "<cmd>Gedit :<CR>", desc = "Fugitive Gedit" },
     },
   },
+
+  {
+    "sindrets/diffview.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    keys = {
+      {
+        "<leader>hv",
+        "<cmd>DiffviewFileHistory %<cr>",
+        desc = "Show file history",
+      },
+      {
+        "<leader>hV",
+        "<cmd>DiffviewFileHistory<cr>",
+        desc = "Show branch history",
+      },
+    },
+    opts = {},
+  },
 }
