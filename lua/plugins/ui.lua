@@ -81,17 +81,30 @@ return {
       },
       sections = {
         lualine_b = {
-          "branch",
-          "diagnostics",
+          {
+            "branch",
+            icon = require('config.icons').git.branch .. ' ',
+          },
+          {
+            "diagnostics",
+            symbols = {
+              error = require('config.icons').diagnostics.error .. ' ',
+              warn = require('config.icons').diagnostics.warn .. ' ',
+              info = require('config.icons').diagnostics.info .. ' ',
+              hint = require('config.icons').diagnostics.hint .. ' ',
+            },
+          },
         },
         lualine_c = {
           {
             "filename",
-            file_status = true,
+            --[[ file_status = true, ]]
             path = 1,
             symbols = {
-              modified = " ",
-              readonly = " ",
+              modified = require('config.icons').file.modified,
+              readonly = require('config.icons').file.readonly,
+              unnamed = '',
+              newfile = require('config.icons').file.new,
             },
           },
           {
@@ -104,7 +117,7 @@ return {
           },
         },
         lualine_x = {
-          "filetype",
+           { "filetype", icon_only = true, separator = '' },
         },
       },
     },
