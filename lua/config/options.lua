@@ -41,7 +41,7 @@ vim.opt.tabstop = 4
 vim.opt.termguicolors = true
 vim.opt.textwidth = 78
 vim.opt.undofile = true
-vim.opt.updatetime = 300 -- faster completion (4000ms default)
+vim.opt.updatetime = 100 -- faster completion (4000ms default)
 vim.opt.wrap = false
 vim.opt.writebackup = false
 
