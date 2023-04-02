@@ -147,7 +147,7 @@ return {
 
   {
     "mhinz/vim-signify",
-    event = { 'BufReadPost', 'BufNewFile' },
+    event = 'VeryLazy',
     config = function()
       vim.g.signify_sign_add = "┃"
       vim.g.signify_sign_delete_first_line = "ᐅ"
