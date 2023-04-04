@@ -6,7 +6,7 @@ return {
     event = 'VeryLazy',
     keys = {
       {
-        "<Leader>un",
+        "<Leader>nd",
         function()
           require("notify").dismiss({ silent = true, pending = true })
         end,
@@ -22,6 +22,11 @@ return {
         return math.floor(vim.o.columns * 0.75)
       end,
     },
+    config = function(_, opts)
+      local nvim_notify = require('notify')
+      nvim_notify.setup(opts)
+      vim.notify = nvim_notify
+    end,
   },
 
   {
