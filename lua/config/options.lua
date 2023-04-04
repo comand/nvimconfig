@@ -51,7 +51,6 @@ vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('extends:»')
 vim.opt.listchars:append('precedes:«')
 
-vim.g.python3_host_prog = '/home/comand/.local/opt/pyenv/shims/python3'
 vim.g.loaded_perl_provider = 0
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
