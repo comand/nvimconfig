@@ -21,7 +21,7 @@ nmap('<C-l>', '<C-w>l', 'Navigate to window at right')
 
 -- Text
 vim.keymap.set('v', '<', '<gv', { desc = 'Decrease indent' })
-vim.keymap.set('v', '>', '>gf', { desc = 'Increase indent' })
+vim.keymap.set('v', '>', '>gv', { desc = 'Increase indent' })
 vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste over visual selection'})
 
 nmap('<C-s>', ':%s/<C-R><C-W>/', 'Search and replace word under cursor')
