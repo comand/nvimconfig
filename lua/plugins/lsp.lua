@@ -48,6 +48,7 @@ return {
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
                 typeCheckingMode = 'off',
+                pythonPath = 'python3',
               },
             },
           },
@@ -145,33 +146,51 @@ return {
         ensure_installed = vim.tbl_keys(opts.servers)
       }
 
+      local make_server_args = function(server_name, default_args)
+        local has_site, site = pcall(require, 'config.site.lsp.' .. server_name)
+        if has_site then
+          return site.make_server_args(default_args)
+        end
+        return default_args
+      end
+
       mason_lspconfig.setup_handlers {
         -- Default config
         function(server_name)
-          require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = opts.servers[server_name],
-            flags = { debounce_text_changes = 150 },
-          }
+          require('lspconfig')[server_name].setup(
+            make_server_args(
+              server_name,
+              {
+                capabilities = capabilities,
+                on_attach = on_attach,
+                settings = opts.servers[server_name],
+                flags = { debounce_text_changes = 150 },
+              }
+            )
+          )
         end,
 
         -- Custom configs
         ['clangd'] = function ()
-          require('clangd_extensions').setup {
-            server = {
-              cmd = {'clangd', '--enable-config', '--limit-results=0'},
-              capabilities = capabilities,
-              settings = opts.servers.clangd,
-              flags = { debounce_text_changes = 150 },
-              on_attach = function(client, bufnr)
-                on_attach(client, bufnr)
-                vim.keymap.set('n', '<C-H>', ':ClangdSwitchSourceHeader<CR>',
-                  { remap = false, silent = true, buffer = bufnr,
-                    desc = 'Switch to source/header file' })
-              end,
-            },
-          }
+          require('clangd_extensions').setup(
+            make_server_args(
+              'clangd',
+              {
+                server = {
+                  cmd = {'clangd', '--enable-config', '--limit-results=0'},
+                  capabilities = capabilities,
+                  settings = opts.servers['clangd'],
+                  flags = { debounce_text_changes = 150 },
+                  on_attach = function(client, bufnr)
+                    on_attach(client, bufnr)
+                    vim.keymap.set('n', '<C-H>', ':ClangdSwitchSourceHeader<CR>',
+                      { remap = false, silent = true, buffer = bufnr,
+                        desc = 'Switch to source/header file' })
+                  end,
+                },
+              }
+            )
+          )
         end,
       }
 
