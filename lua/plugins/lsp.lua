@@ -1,5 +1,42 @@
 return {
   {
+    "SmiteshP/nvim-navic",
+    event = { 'BufReadPost', 'BufNewFile' },
+    config = function ()
+      local icons = {}
+      for name,text in pairs(require('config.icons').kinds) do
+        icons[name] = text .. ' '
+      end
+      require('nvim-navic').setup {
+        icons = icons,
+        separator = '  ',
+        depth_limit_indicator = '…',
+        depth_limit = 4,
+      }
+    end,
+  },
+
+  {
+    'SmiteshP/nvim-navbuddy',
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'SmiteshP/nvim-navic',
+      'MunifTanjim/nui.nvim',
+    },
+    config = function()
+      require('nvim-navbuddy').setup {
+        icons = require('config.icons').kinds,
+      }
+    end,
+    keys = {
+      {
+        '<Leader>b', function() require('nvim-navbuddy').open() end,
+        noremap = true, silent = true, desc = 'Navigation Buddy'
+      },
+    },
+  },
+
+  {
     'neovim/nvim-lspconfig',
     event = {'BufReadPre', 'BufNewFile'},
     dependencies = {
@@ -83,6 +120,7 @@ return {
         -- Navic
         if client.server_capabilities.documentSymbolProvider then
           require('nvim-navic').attach(client, bufnr)
+          require('nvim-navbuddy').attach(client, bufnr)
         end
 
         -- Illuminate

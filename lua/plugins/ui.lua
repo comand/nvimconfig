@@ -45,23 +45,6 @@ return {
   },
 
   {
-    "SmiteshP/nvim-navic",
-    event = { 'BufReadPost', 'BufNewFile' },
-    config = function ()
-      local icons = {}
-      for name,text in pairs(require('config.icons').kinds) do
-        icons[name] = text .. ' '
-      end
-      require('nvim-navic').setup {
-        icons = icons,
-        separator = '  ',
-        depth_limit_indicator = '…',
-        depth_limit = 4,
-      }
-    end,
-  },
-
-  {
     "nvim-lualine/lualine.nvim",
     event = 'VeryLazy',
     dependencies = {
