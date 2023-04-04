@@ -94,29 +94,48 @@ return {
           },
         },
       }
-
-      local builtin = require('telescope.builtin')
-
-      vim.keymap.set('n', '<C-b>', function() builtin.buffers { previewer = false } end,
-        { noremap = true, silent = true, desc = 'Telescope: buffers' })
-      vim.keymap.set('n', '<C-e>', builtin.find_files,
-        { noremap = true, silent = true, desc = 'Telescope: find files' })
-      vim.keymap.set('n', '<C-g>', builtin.live_grep,
-        { noremap = true, silent = true, desc = 'Telescope: live grep' })
-      vim.keymap.set('n', '<Leader>ft', builtin.grep_string,
-        { noremap = true, silent = true, desc = 'Telescope: find term' })
-      vim.keymap.set('n', '<Leader>tm', builtin.marks,
-        { noremap = true, silent = true, desc = 'Telescope: marks' })
-      vim.keymap.set('n', '<Leader>tr', builtin.registers,
-        { noremap = true, silent = true, desc = 'Telescope: registers' })
-      vim.keymap.set('n', '<Leader>tc', builtin.commands,
-        { noremap = true, silent = true, desc = 'Telescope: commands' })
-      vim.keymap.set('n', '<Leader>th', builtin.help_tags,
-        { noremap = true, silent = true, desc = 'Telescope: help tags' })
-      vim.keymap.set('n', '<Leader>tk', builtin.keymaps,
-        { noremap = true, silent = true, desc = 'Telescope: keymaps' })
-      vim.keymap.set('n', '<Leader>tl', function() builtin.live_grep({ grep_open_files = true }) end,
-        { noremap = true, silent = true, desc = 'Telescope: buffer lines' })
     end,
+    keys = {
+      {
+        '<C-b>', function() require('telescope.builtin').buffers { previewer = false } end,
+        noremap = true, silent = true, desc = 'Telescope: buffers',
+      },
+      {
+        '<C-e>', function() require('telescope.builtin').find_files() end,
+        noremap = true, silent = true, desc = 'Telescope: find files',
+      },
+      {
+        '<C-g>', function() require('telescope.builtin').live_grep() end,
+        noremap = true, silent = true, desc = 'Telescope: live grep',
+      },
+      {
+        '<Leader>ft', function() require('telescope.builtin').grep_string() end,
+        noremap = true, silent = true, desc = 'Telescope: find term',
+      },
+      {
+        '<Leader>tm', function() require('telescope.builtin').marks() end,
+        noremap = true, silent = true, desc = 'Telescope: marks',
+      },
+      {
+        '<Leader>tr', function() require('telescope.builtin').registers() end,
+        noremap = true, silent = true, desc = 'Telescope: registers',
+      },
+      {
+        '<Leader>tc', function() require('telescope.builtin').commands() end,
+        noremap = true, silent = true, desc = 'Telescope: commands',
+      },
+      {
+        '<Leader>th', function() require('telescope.builtin').help_tags() end,
+        noremap = true, silent = true, desc = 'Telescope: help tags',
+      },
+      {
+        '<Leader>tk', function() require('telescope.builtin').keymaps() end,
+        noremap = true, silent = true, desc = 'Telescope: keymaps',
+      },
+      {
+        '<Leader>tl', function() require('telescope.builtin').live_grep({ grep_open_files = true }) end,
+        noremap = true, silent = true, desc = 'Telescope: buffer lines',
+      },
+    },
   },
 }
