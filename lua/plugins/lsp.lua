@@ -30,7 +30,7 @@ return {
     end,
     keys = {
       {
-        '<Leader>b', function() require('nvim-navbuddy').open() end,
+        '<Leader>B', function() require('nvim-navbuddy').open() end,
         noremap = true, silent = true, desc = 'Navigation Buddy'
       },
     },
