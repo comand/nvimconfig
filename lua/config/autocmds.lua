@@ -47,7 +47,8 @@ vim.api.nvim_create_autocmd("FileType", {
     "notify",
     "qf",
     "query",
-    "startuptime"
+    "startuptime",
+    "vim",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
