@@ -24,8 +24,12 @@ return {
       'MunifTanjim/nui.nvim',
     },
     config = function()
+      local type_icons = {}
+      for name,text in pairs(require('config.icons').kinds) do
+        type_icons[name] = text .. ' '
+      end
       require('nvim-navbuddy').setup {
-        icons = require('config.icons').kinds,
+        icons = type_icons,
       }
     end,
     keys = {
