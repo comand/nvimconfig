@@ -115,11 +115,9 @@ return {
     config = function(_, opts)
       local on_attach = function(client, bufnr)
         -- LSP signature
-        require('lsp_signature').on_attach({
-          bind = true,
-          hint_enable = false,
-          doc_lines = 3,
-        }, bufnr)
+        -- require('lsp_signature').on_attach({
+        --   hint_enable = false,
+        -- }, bufnr)
 
         -- Navic
         if client.server_capabilities.documentSymbolProvider then
