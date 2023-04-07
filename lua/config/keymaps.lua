@@ -5,7 +5,6 @@ end
 -- Toggles
 nmap('<Tab>l', ':set invlist list?<CR>', 'Toggle list chars')
 nmap('<Tab>n', ':set invnumber number?<CR>', 'Toggle line numbers')
-nmap('<Tab>p', ':set invpaste paste?<CR>', 'Toggle paste')
 nmap('<Tab>h', ':set invhlsearch hlsearch?<CR>', 'Toggle search highlight')
 
 -- Buffer navigation
