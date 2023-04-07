@@ -20,7 +20,7 @@ return {
       vim.g.mundo_preview_height = 40
       vim.g.mundo_preview_bottom = true
     end,
-    cmds = {'MudoToggle'},
+    cmd = {'MudoToggle'},
     keys = {
       { "<Leader>u", ":MundoToggle<CR>", noremap = true, desc = "Toggle: undo tree" },
     },
