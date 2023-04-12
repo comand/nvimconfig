@@ -92,6 +92,14 @@ return {
           find_files = {
             find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
           },
+          buffers = {
+            sort_lastused = true,
+            mappings = {
+              i = {
+                ['<C-w>'] = 'delete_buffer',
+              },
+            },
+          },
         },
       }
     end,
