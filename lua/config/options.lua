@@ -1,6 +1,5 @@
 vim.g.mapleader = ','
 vim.g.maplocalleader = ','
-vim.g.no_plugin_maps = true -- ??
 
 vim.opt.backup = false
 vim.opt.breakindent = true
