@@ -17,11 +17,6 @@ return {
           selection_caret = " ",
           path_display = { "smart" },
           layout_strategy = 'vertical',
-          layout_config = {
-            height = vim.o.lines,
-            width = vim.o.columns,
-            preview_height = 0.6,
-          },
 
           mappings = {
             i = {
