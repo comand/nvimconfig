@@ -54,7 +54,6 @@ return {
 
     opts = {
       diagnostic = {
-        virtual_text = { spacing = 4, prefix = '●' },
         signs = true,
         sign_icons = {
           { name = 'DiagnosticSignError', text = require('config.icons').diagnostics.error },
@@ -82,15 +81,11 @@ return {
         rust_analyzer = {},
 
         pyright = {
-          single_file_support = true,
-          settings = {
-            python = {
-              analysis = {
-                autoSearchPaths = true,
-                useLibraryCodeForTypes = true,
-                typeCheckingMode = 'off',
-                pythonPath = 'python3',
-              },
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              typeCheckingMode = 'off',
             },
           },
         },
