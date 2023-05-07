@@ -89,10 +89,10 @@ return {
             --[[ file_status = true, ]]
             path = 1,
             symbols = {
-              modified = require('config.icons').file.modified,
-              readonly = require('config.icons').file.readonly,
+              modified = require('config.icons').file.modified .. ' ',
+              readonly = require('config.icons').file.readonly .. ' ',
               unnamed = '',
-              newfile = require('config.icons').file.new,
+              newfile = require('config.icons').file.new .. ' ',
             },
           },
           {
