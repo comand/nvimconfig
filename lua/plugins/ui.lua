@@ -76,10 +76,10 @@ return {
           {
             "diagnostics",
             symbols = {
-              error = require('config.icons').diagnostics.error .. ' ',
-              warn = require('config.icons').diagnostics.warn .. ' ',
-              info = require('config.icons').diagnostics.info .. ' ',
-              hint = require('config.icons').diagnostics.hint .. ' ',
+              error = require('config.icons').diagnostics.error,
+              warn = require('config.icons').diagnostics.warn,
+              info = require('config.icons').diagnostics.info,
+              hint = require('config.icons').diagnostics.hint,
             },
           },
         },
