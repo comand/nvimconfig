@@ -49,7 +49,9 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'p00f/clangd_extensions.nvim',
       'ray-x/lsp_signature.nvim',
-      {'j-hui/fidget.nvim', opts = {} },
+      {'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
+        config = function() require('toggle_lsp_diagnostics').init() end },
+      {'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
     },
 
     opts = {
@@ -131,6 +133,10 @@ return {
           vim.keymap.set(m, lhs, rhs,
             { remap = false, silent = true, buffer = bufnr, desc = desc })
         end
+
+        map('n', '<Tab>v',
+          require'toggle_lsp_diagnostics'.toggle_virtual_text,
+          'Toggle diagnostic vtext')
 
         map('n', '<leader>rn', vim.lsp.buf.rename, 'LSP: [r]e[n]ame')
         map('n', '<leader>ca', vim.lsp.buf.code_action, 'LSP: [c]ode [a]ction')
