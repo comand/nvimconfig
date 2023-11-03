@@ -213,25 +213,33 @@ return {
 
         -- Custom configs
         ['clangd'] = function ()
-          require('clangd_extensions').setup(
-            make_server_args(
-              'clangd',
-              {
-                server = {
-                  cmd = {'clangd', '--enable-config', '--limit-results=0'},
-                  capabilities = capabilities,
-                  settings = opts.servers['clangd'],
-                  flags = { debounce_text_changes = 150 },
-                  on_attach = function(client, bufnr)
-                    on_attach(client, bufnr)
-                    vim.keymap.set('n', '<C-H>', ':ClangdSwitchSourceHeader<CR>',
-                      { remap = false, silent = true, buffer = bufnr,
-                        desc = 'Switch to source/header file' })
-                  end,
-                },
+          require('lspconfig')['clangd'].setup {
+              cmd = {'clangd', '--enable-config', '--limit-results=0'},
+              capabilities = capabilities,
+              settings = opts.servers['clangd'],
+              flags = { debounce_text_changes = 150 },
+              on_attach = function(client, bufnr)
+                on_attach(client, bufnr)
+                require('clangd_extensions.inlay_hints').setup_autocmd()
+                require('clangd_extensions.inlay_hints').set_inlay_hints()
+                vim.keymap.set('n', '<C-H>', function()
+                  client.request('textDocument/switchSourceHeader',
+                    { uri = vim.uri_from_bufnr(bufnr) },
+                    function(err, result)
+                      if err then
+                        error(tostring(err))
+                      end
+                      if not result then
+                        print 'Corresponding file cannot be determined'
+                        return
+                      end
+                      vim.api.nvim_command('edit ' .. vim.uri_to_fname(result))
+                    end, bufnr)
+                end,
+                  { remap = true, silent = true, buffer = bufnr,
+                    desc = 'Switch to source/header file' })
+              end,
               }
-            )
-          )
         end,
       }
 
