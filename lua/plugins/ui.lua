@@ -113,13 +113,14 @@ return {
 
   {
     "lukas-reineke/indent-blankline.nvim",
+    main = 'ibl',
     event = { "BufReadPost", "BufNewFile" },
+    keys = {
+      { "<Tab>b", ':IBLToggle<CR>', desc = "Toggle indent-blankline" },
+    },
     opts = {
-      char = "│",
-      show_current_context = true,
-      show_end_of_line = false,
-      use_treesitter = true,
-      filetype = { "vim", "python", "lua", "yaml", "json" },
+      scope = { enabled = false },
+      indent = { char = {"│"} },
     },
   },
 
