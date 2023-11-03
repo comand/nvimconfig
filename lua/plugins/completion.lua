@@ -57,6 +57,7 @@ return {
             end,
             { "i", "s" }),
         },
+        preselect = cmp.PreselectMode.None,
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(entry, vim_item)
