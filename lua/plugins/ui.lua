@@ -48,7 +48,7 @@ return {
     "nvim-lualine/lualine.nvim",
     event = 'VeryLazy',
     dependencies = {
-      "SmiteshP/nvim-navic",
+      "stevearc/aerial.nvim",
     },
     opts = {
       extensions = {
@@ -86,7 +86,7 @@ return {
         lualine_c = {
           {
             "filename",
-            --[[ file_status = true, ]]
+            file_status = true,
             path = 1,
             symbols = {
               modified = require('config.icons').file.modified .. ' ',
@@ -95,14 +95,7 @@ return {
               newfile = require('config.icons').file.new .. ' ',
             },
           },
-          {
-            function()
-              return require('nvim-navic').get_location()
-            end,
-            cond = function()
-              return require('nvim-navic').is_available()
-            end,
-          },
+          { "aerial" },
         },
         lualine_x = {
            { "filetype", icon_only = true, separator = '' },

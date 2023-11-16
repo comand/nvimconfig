@@ -1,41 +1,27 @@
 return {
   {
-    "SmiteshP/nvim-navic",
-    event = { 'BufReadPost', 'BufNewFile' },
-    config = function ()
-      local icons = {}
-      for name,text in pairs(require('config.icons').kinds) do
-        icons[name] = text .. ' '
-      end
-      require('nvim-navic').setup {
-        icons = icons,
-        separator = '  ',
-        depth_limit_indicator = '…',
-        depth_limit = 4,
-      }
-    end,
-  },
-
-  {
-    'SmiteshP/nvim-navbuddy',
-    dependencies = {
-      'neovim/nvim-lspconfig',
-      'SmiteshP/nvim-navic',
-      'MunifTanjim/nui.nvim',
+    'stevearc/aerial.nvim',
+    opts = {
+      layout = {
+        max_width = { 80, 0.3 },
+        min_width = 10,
+        width = 80,
+      },
+      show_guides = true,
+      keymaps = {
+        ["}"] = false,
+        ["{"] = false,
+        ["<C-k>"] = "actions.prev",
+        ["<C-j>"] = "actions.next",
+      },
     },
-    config = function()
-      local type_icons = {}
-      for name,text in pairs(require('config.icons').kinds) do
-        type_icons[name] = text .. ' '
-      end
-      require('nvim-navbuddy').setup {
-        icons = type_icons,
-      }
-    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons"
+    },
     keys = {
-      {
-        '<Leader>B', function() require('nvim-navbuddy').open() end,
-        noremap = true, silent = true, desc = 'Navigation Buddy'
+      { '<leader>a', '<cmd>AerialToggle<cr>',
+        noremap = true, silent = true, desc = 'Symbol navigator'
       },
     },
   },
@@ -48,10 +34,9 @@ return {
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
       'p00f/clangd_extensions.nvim',
-      'ray-x/lsp_signature.nvim',
       {'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
         config = function() require('toggle_lsp_diagnostics').init() end },
-      {'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+      {'j-hui/fidget.nvim', opts = {} },
     },
 
     opts = {
@@ -111,17 +96,6 @@ return {
 
     config = function(_, opts)
       local on_attach = function(client, bufnr)
-        -- LSP signature
-        -- require('lsp_signature').on_attach({
-        --   hint_enable = false,
-        -- }, bufnr)
-
-        -- Navic
-        if client.server_capabilities.documentSymbolProvider then
-          require('nvim-navic').attach(client, bufnr)
-          require('nvim-navbuddy').attach(client, bufnr)
-        end
-
         -- Illuminate
         require('illuminate').on_attach(client)
 

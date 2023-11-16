@@ -8,6 +8,7 @@ return {
         "mfussenegger/nvim-dap",
         dependencies = {
           { "jayp0521/mason-nvim-dap.nvim", opts = {} },
+          "MunifTanjim/nui.nvim",
         },
         opts = {},
         config = function(_, opts)
