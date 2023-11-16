@@ -90,14 +90,25 @@ return {
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
       {
-        "<leader>hv",
+        "<leader>fh",
         "<cmd>DiffviewFileHistory %<cr>",
         desc = "Show file history",
       },
       {
-        "<leader>hV",
+        "<leader>bh",
         "<cmd>DiffviewFileHistory<cr>",
         desc = "Show branch history",
+      },
+      {
+        "<leader>dv",
+        function()
+          if next(require('diffview.lib').views) == nil then
+            vim.cmd('DiffviewOpen')
+          else
+            vim.cmd('DiffviewClose')
+          end
+        end,
+        desc = "Toggle Diffview"
       },
     },
     opts = {},
