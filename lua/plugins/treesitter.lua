@@ -3,7 +3,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "JoosepAlviste/nvim-ts-context-commentstring",
     },
     build = ":TSUpdate",
     event = "BufReadPost",
@@ -47,10 +46,6 @@ return {
       indent = {
         enable = false,
         --disable = { "yaml", "python" },
-      },
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
       },
 
       textobjects = {

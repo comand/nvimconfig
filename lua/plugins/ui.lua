@@ -148,9 +148,17 @@ return {
   {
     "RRethy/vim-illuminate",
     event = { 'BufReadPost', 'BufNewFile' },
-    config = function()
-      vim.g.Illuminate_delay = 500
-    end,
+    opts = {
+      delay = 500,
+      under_cursor = false,
+      large_file_cutoff = 2000,
+      large_file_overrides = {
+        providers = { 'lsp' },
+      },
+    },
+    config = function(_, opts)
+      require('illuminate').configure(opts)
+    end
   },
 
   {
