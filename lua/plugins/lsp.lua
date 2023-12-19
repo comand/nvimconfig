@@ -31,7 +31,8 @@ return {
     event = {'BufReadPre', 'BufNewFile'},
     dependencies = {
       -- LSP
-      'williamboman/mason.nvim',
+      { 'williamboman/mason.nvim', cmd = 'Mason',
+        config = function() require('mason').setup() end },
       'williamboman/mason-lspconfig.nvim',
       'p00f/clangd_extensions.nvim',
       {'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
@@ -153,8 +154,6 @@ return {
       -- LSP config
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
-      require('mason').setup()
 
       local mason_lspconfig = require('mason-lspconfig')
       mason_lspconfig.setup {
