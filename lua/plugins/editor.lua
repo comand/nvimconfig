@@ -79,6 +79,20 @@ return {
       { '<leader>X', '<cmd>TroubleToggle workspace_diagnostics<CR>', desc = 'Show workspace diagnostics' },
       { '<leader>L', '<cmd>TroubleToggle loclist<CR>', desc = 'Show location list' },
       { '<leader>U', '<cmd>TroubleToggle quickfix<CR>', desc = 'Show quickfix list' },
+      { '[q',
+        function()
+          require('trouble').open()
+          require('trouble').previous({ skip_groups = true, jump = true })
+        end,
+        desc = 'Previous trouble/quickfix item',
+      },
+      { ']q',
+        function()
+          require('trouble').open()
+          require('trouble').next({ skip_groups = true, jump = true })
+        end,
+        desc = 'Next trouble/quickfix item',
+      },
     },
   },
 
