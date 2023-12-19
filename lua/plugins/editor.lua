@@ -83,6 +83,16 @@ return {
   },
 
   {
+    'psliwka/vim-dirtytalk',
+    ft = { 'python', 'lua', 'markdown', 'cpp', 'bash' },
+    build = ':DirtytalkUpdate',
+    init = function()
+      vim.opt_local.spelllang = {'en', 'programming'}
+    end,
+  },
+
+
+  {
     "tpope/vim-fugitive",
     event = 'VeryLazy',
     keys = {
