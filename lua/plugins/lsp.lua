@@ -115,6 +115,9 @@ return {
 
         map('n', '<leader>rn', vim.lsp.buf.rename, 'LSP: [r]e[n]ame')
         map('n', '<leader>ca', vim.lsp.buf.code_action, 'LSP: [c]ode [a]ction')
+        map('n', '<leader>cf', vim.lsp.buf.format, 'LSP: [c]ode [f]ormatting')
+        vim.keymap.set('v', '<leader>cf', vim.lsp.buf.format,
+          { silent = true, desc = 'LSP: [c]ode [f]ormatting' })
 
         map('n', 'K', vim.lsp.buf.hover, 'Show information')
         map('n', '<C-,>', function()
