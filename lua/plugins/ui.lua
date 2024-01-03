@@ -1,5 +1,5 @@
 return {
-  'kyazdani42/nvim-web-devicons',   -- file type icons, etc.
+  'nvim-tree/nvim-web-devicons',   -- file type icons, etc.
 
   {
     "rcarriga/nvim-notify",
