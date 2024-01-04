@@ -165,7 +165,7 @@ return {
     "anuvyklack/pretty-fold.nvim",
     event = { 'BufReadPost', 'BufNewFile' },
     dependencies = {
-      "anuvyklack/nvim-keymap-amend",
+      "anuvyklack/keymap-amend.nvim",
     },
     opts = {
       fill_char = "╌",
