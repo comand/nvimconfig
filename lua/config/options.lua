@@ -44,7 +44,7 @@ vim.opt.updatetime = 100 -- faster completion (4000ms default)
 vim.opt.wrap = false
 vim.opt.writebackup = false
 
-vim.opt.shortmess:append "c"
+vim.opt.shortmess:append "cI"
 vim.opt.listchars:append('eol:↴')
 vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('extends:»')
