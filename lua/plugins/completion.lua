@@ -1,7 +1,7 @@
 return {
   {
     "SirVer/UltiSnips",
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = 'InsertEnter',
     dependencies = {
       "honza/vim-snippets",
     },
@@ -9,7 +9,7 @@ return {
 
   {
     "hrsh7th/nvim-cmp",
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = 'InsertEnter',
     dependencies = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
