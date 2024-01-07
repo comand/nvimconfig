@@ -6,6 +6,12 @@ return {
   -- goto file line numbers on startup
   { "wsdjeg/vim-fetch", lazy = false },
 
+  -- disable plugins for big files
+  {
+    'LunarVim/bigfile.nvim',
+    event = 'BufReadPre'
+  },
+
   -- gf for lua imports/requires
   {
     'sam4llis/nvim-lua-gf',
