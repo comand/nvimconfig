@@ -148,6 +148,9 @@ return {
   {
     "RRethy/vim-illuminate",
     event = { 'BufReadPost', 'BufNewFile' },
+    keys = {
+      { "<Tab>i", ":IlluminateToggleBuf<CR>", desc = "Toggle illuminate" },
+    },
     opts = {
       delay = 500,
       under_cursor = false,
