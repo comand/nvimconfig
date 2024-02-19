@@ -103,6 +103,11 @@ return {
   },
 
   {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+
+  {
     'psliwka/vim-dirtytalk',
     ft = { 'python', 'lua', 'markdown', 'cpp', 'bash' },
     build = ':DirtytalkUpdate',
