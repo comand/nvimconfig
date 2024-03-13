@@ -148,9 +148,6 @@ return {
   {
     "RRethy/vim-illuminate",
     event = { 'BufReadPost', 'BufNewFile' },
-    keys = {
-      { "<Tab>i", ":IlluminateToggleBuf<CR>", desc = "Toggle illuminate" },
-    },
     opts = {
       delay = 500,
       under_cursor = false,
@@ -161,7 +158,33 @@ return {
     },
     config = function(_, opts)
       require('illuminate').configure(opts)
-    end
+
+      local function map(key, dir, buffer)
+        vim.keymap.set('n', key,
+        function()
+          require('illuminate')['goto_' .. dir .. '_reference'](false)
+        end, {
+          desc = dir:sub(1, 1):upper() .. dir:sub(2) .. " Reference",
+          buffer = buffer
+        })
+      end
+
+      map('[[', 'prev')
+      map(']]', 'next')
+
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          local buffer = vim.api.nvim_get_current_buf()
+          map('[[', 'prev', buffer)
+          map(']]', 'next', buffer)
+        end,
+      })
+    end,
+    keys = {
+      { "<Tab>i", ":IlluminateToggleBuf<CR>", desc = "Toggle illuminate" },
+      { ']]', desc = 'Next Reference' },
+      { '[[', desc = 'Previous Reference' },
+    },
   },
 
   {
