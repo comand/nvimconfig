@@ -89,7 +89,9 @@ return {
     end,
     keys = {
       {
-        '<C-b>', function() require('telescope.builtin').buffers { previewer = false } end,
+        '<C-b>', function()
+          require('telescope.builtin').buffers { previewer = false }
+        end,
         noremap = true, silent = true, desc = 'Telescope: buffers',
       },
       {
@@ -125,8 +127,16 @@ return {
         noremap = true, silent = true, desc = 'Telescope: keymaps',
       },
       {
-        '<Leader>tl', function() require('telescope.builtin').live_grep({ grep_open_files = true }) end,
+        '<Leader>tl', function()
+          require('telescope.builtin').live_grep({ grep_open_files = true })
+        end,
         noremap = true, silent = true, desc = 'Telescope: buffer lines',
+      },
+      {
+        '<Leader>ec', function()
+            require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })
+        end,
+        noremap = true, silent = true, desc = 'Telescope: nvim config',
       },
     },
   },
