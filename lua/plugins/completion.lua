@@ -21,6 +21,7 @@ return {
     },
 
     config = function()
+      vim.api.nvim_set_hl(0, 'CmpGhostText', { link = 'Comment', default = true })
       local cmp = require('cmp')
       local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
       cmp.setup  {
@@ -34,10 +35,12 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         mapping = {
+          ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+          ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
           ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-          ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-y>"] = cmp.config.disable, -- remove the default `<C-y>` mapping.
           ["<C-e>"] = cmp.mapping({
             i = cmp.mapping.abort(),
@@ -98,7 +101,7 @@ return {
           select = false,
         },
         experimental = {
-          ghost_text = { hl_group = "LspCodeLens" },
+          ghost_text = { hl_group = "CmpGhostText" },
           native_menu = false,
         },
       }
