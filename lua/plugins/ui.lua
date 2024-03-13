@@ -113,7 +113,21 @@ return {
     },
     opts = {
       scope = { enabled = false },
-      indent = { char = {"│"} },
+      indent = {
+        char = "│",
+        tab_char = "│",
+      },
+      exclude = {
+        filetypes = {
+          'help',
+          'Trouble',
+          'trouble',
+          'lazy',
+          'mason',
+          'notify',
+          'toggleterm',
+        },
+      },
     },
   },
 
