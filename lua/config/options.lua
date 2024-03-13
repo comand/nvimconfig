@@ -51,6 +51,7 @@ vim.opt.listchars:append('extends:»')
 vim.opt.listchars:append('precedes:«')
 
 vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
 
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
