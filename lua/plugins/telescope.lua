@@ -20,15 +20,11 @@ return {
 
           mappings = {
             i = {
-              -- ["<C-n>"] = actions.cycle_history_next,
-              -- ["<C-p>"] = actions.cycle_history_prev,
+              ["<esc>"] = actions.close,
 
-              ["<C-n>"] = actions.move_selection_next,
-              ["<C-p>"] = actions.move_selection_previous,
-
-              ["<C-c>"] = actions.close,
-
+              ["<C-j>"] = actions.move_selection_next,
               ["<Down>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
               ["<Up>"] = actions.move_selection_previous,
 
               ["<CR>"] = actions.select_default,
@@ -38,9 +34,8 @@ return {
 
               ["<C-u>"] = actions.preview_scrolling_up,
               ["<C-d>"] = actions.preview_scrolling_down,
-
-              ["<PageUp>"] = actions.results_scrolling_up,
-              ["<PageDown>"] = actions.results_scrolling_down,
+              ["<C-p>"] = actions.results_scrolling_up,
+              ["<C-n>"] = actions.results_scrolling_down,
 
               ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
               ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
@@ -48,9 +43,7 @@ return {
               ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
               ["<C-l>"] = actions.complete_tag,
 
-              ["<esc>"] = actions.close,
             },
-
 
             n = {
               ["<esc>"] = actions.close,
@@ -64,22 +57,15 @@ return {
               ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
               ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 
-              ["j"] = actions.move_selection_next,
-              ["k"] = actions.move_selection_previous,
-              ["H"] = actions.move_to_top,
-              ["M"] = actions.move_to_middle,
-              ["L"] = actions.move_to_bottom,
-
-              ["<Down>"] = actions.move_selection_next,
-              ["<Up>"] = actions.move_selection_previous,
+              ["<C-j>"] = actions.move_selection_next,
+              ["<C-k>"] = actions.move_selection_previous,
               ["gg"] = actions.move_to_top,
               ["G"] = actions.move_to_bottom,
 
               ["<C-u>"] = actions.preview_scrolling_up,
               ["<C-d>"] = actions.preview_scrolling_down,
-
-              ["<PageUp>"] = actions.results_scrolling_up,
-              ["<PageDown>"] = actions.results_scrolling_down,
+              ["<C-p>"] = actions.results_scrolling_up,
+              ["<C-n>"] = actions.results_scrolling_down,
             },
           },
         },
@@ -90,8 +76,11 @@ return {
           buffers = {
             sort_lastused = true,
             mappings = {
+              n = {
+                ['<C-w>'] = require('telescope.actions').delete_buffer,
+              },
               i = {
-                ['<C-w>'] = 'delete_buffer',
+                ['<C-w>'] = require('telescope.actions').delete_buffer,
               },
             },
           },
