@@ -18,7 +18,6 @@ vim.opt.grepprg = 'rg --vimgrep --no-heading'
 vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.inccommand = 'split'
-vim.opt.lazyredraw = true
 vim.opt.mouse = 'a'
 vim.opt.mousemodel = 'popup_setpos'
 vim.opt.pumheight = 10
