@@ -6,6 +6,14 @@ end
 nmap('<Tab>l', ':set invlist list?<CR>', 'Toggle list chars')
 nmap('<Tab>n', ':set invnumber number?<CR>', 'Toggle line numbers')
 nmap('<Tab>h', ':set invhlsearch hlsearch?<CR>', 'Toggle search highlight')
+nmap('<Tab>o', function()
+  local value = vim.api.nvim_get_option_value('colorcolumn', {})
+  if value == '' then
+    vim.api.nvim_set_option_value('colorcolumn', '80', {})
+  else
+    vim.api.nvim_set_option_value('colorcolumn', value, {})
+  end
+end, 'Toggle colorcolumn')
 
 -- Buffer navigation
 nmap('<C-n>', ':bnext<CR>', 'Next buffer')
@@ -35,3 +43,4 @@ vim.keymap.set('v', '<LeftRelease>', '*ygv',
   { desc = 'Yank to clipboard on mouse release' })
 
 nmap("<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
+
