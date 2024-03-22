@@ -101,7 +101,8 @@ return {
         require('illuminate').on_attach(client)
 
         -- Set the tagfunc to use lsp-definition
-        vim.api.nvim_buf_set_option(bufnr, 'tagfunc', 'v:lua.vim.lsp.tagfunc')
+        vim.api.nvim_set_option_value(
+          'tagfunc', 'v:lua.vim.lsp.tagfunc', { buf = bufnr })
 
         -- Bind LSP keys
         local map = function(m, lhs, rhs, desc)
