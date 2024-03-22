@@ -42,5 +42,4 @@ nmap('QQ', 'ZQ', 'Quick Quit')
 vim.keymap.set('v', '<LeftRelease>', '*ygv',
   { desc = 'Yank to clipboard on mouse release' })
 
-nmap("<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
-
+nmap("<leader>l", "<cmd>Lazy<cr>", "Lazy")
