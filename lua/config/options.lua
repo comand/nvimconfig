@@ -53,6 +53,12 @@ vim.opt.listchars:append {
   precedes = '«',
 }
 
+-- Turn off unnecessary providers
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
+-- Use a global nvim venv if it exists.
+local venvdir = vim.fn.stdpath 'data' .. '/venv'
+if vim.fn.isdirectory(venvdir) then
+  vim.g.python3_host_prog = venvdir .. "/bin/python3"
+end
