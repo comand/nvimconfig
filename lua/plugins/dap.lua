@@ -4,6 +4,7 @@ return {
     "rcarriga/nvim-dap-ui",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+      'nvim-neotest/nvim-nio',
       {
         "mfussenegger/nvim-dap",
         dependencies = {
