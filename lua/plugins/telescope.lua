@@ -22,9 +22,9 @@ return {
             i = {
               ["<esc>"] = actions.close,
 
-              ["<C-j>"] = actions.move_selection_next,
+              ["<C-n>"] = actions.move_selection_next,
               ["<Down>"] = actions.move_selection_next,
-              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-p>"] = actions.move_selection_previous,
               ["<Up>"] = actions.move_selection_previous,
 
               ["<CR>"] = actions.select_default,
@@ -34,8 +34,8 @@ return {
 
               ["<C-u>"] = actions.preview_scrolling_up,
               ["<C-d>"] = actions.preview_scrolling_down,
-              ["<C-p>"] = actions.results_scrolling_up,
-              ["<C-n>"] = actions.results_scrolling_down,
+              ["<C-k>"] = actions.results_scrolling_up,
+              ["<C-j>"] = actions.results_scrolling_down,
 
               ["<Tab>"] = actions.toggle_selection + actions.move_selection_worse,
               ["<S-Tab>"] = actions.toggle_selection + actions.move_selection_better,
@@ -57,15 +57,15 @@ return {
               ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
               ["<M-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
 
-              ["<C-j>"] = actions.move_selection_next,
-              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-n>"] = actions.move_selection_next,
+              ["<C-p>"] = actions.move_selection_previous,
               ["gg"] = actions.move_to_top,
               ["G"] = actions.move_to_bottom,
 
               ["<C-u>"] = actions.preview_scrolling_up,
               ["<C-d>"] = actions.preview_scrolling_down,
-              ["<C-p>"] = actions.results_scrolling_up,
-              ["<C-n>"] = actions.results_scrolling_down,
+              ["<C-j>"] = actions.results_scrolling_up,
+              ["<C-k>"] = actions.results_scrolling_down,
             },
           },
         },
@@ -136,7 +136,13 @@ return {
         '<Leader>ec', function()
             require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })
         end,
-        noremap = true, silent = true, desc = 'Telescope: nvim config',
+        noremap = true, silent = true, desc = 'Telescope: [e]dit [c]onfig',
+      },
+      {
+        '<Leader>gc', function()
+            require('telescope.builtin').live_grep({ cwd = vim.fn.stdpath('config') })
+        end,
+        noremap = true, silent = true, desc = 'Telescope: [g]rep [c]onfig',
       },
     },
   },
