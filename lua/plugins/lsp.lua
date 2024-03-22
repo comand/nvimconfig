@@ -31,10 +31,16 @@ return {
     event = {'BufReadPre', 'BufNewFile'},
     dependencies = {
       -- LSP
-      { 'williamboman/mason.nvim', cmd = 'Mason',
+      {'williamboman/mason.nvim', cmd = 'Mason',
         config = function() require('mason').setup() end },
       'williamboman/mason-lspconfig.nvim',
-      'p00f/clangd_extensions.nvim',
+      {'p00f/clangd_extensions.nvim',
+        opts = {
+          inlay_hints = {
+            inline = false, -- works on >=0.10, but it's distracting.
+          },
+        },
+      },
       {'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
         config = function() require('toggle_lsp_diagnostics').init() end },
       {'j-hui/fidget.nvim', opts = {} },
