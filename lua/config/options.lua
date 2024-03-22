@@ -24,7 +24,6 @@ vim.opt.pumheight = 10
 vim.opt.scrolloff = 8
 vim.opt.shiftround = true
 vim.opt.shiftwidth = 4
---vim.opt.showbreak = '↪'
 vim.opt.showmode = false
 vim.opt.showtabline = 1
 vim.opt.sidescrolloff = 8
@@ -44,14 +43,16 @@ vim.opt.wrap = false
 vim.opt.writebackup = false
 
 vim.opt.shortmess:append "cI"
-vim.opt.listchars:append('eol:↴')
-vim.opt.listchars:append('space:⋅')
-vim.opt.listchars:append('extends:»')
-vim.opt.listchars:append('precedes:«')
+vim.opt.whichwrap:append('<,>,[,],h,l')
+vim.opt.iskeyword:append('-')
+
+vim.opt.listchars:append {
+  eol = '↴',
+  space = '⋅',
+  extends = '»',
+  precedes = '«',
+}
 
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]]
