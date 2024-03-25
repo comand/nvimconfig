@@ -59,8 +59,8 @@ vim.g.loaded_ruby_provider = 0
 
 -- Use a global nvim venv if it exists.
 local venvdir = vim.fn.stdpath 'data' .. '/venv'
-if vim.fn.isdirectory(venvdir .. '/Scripts') then
+if vim.fn.exists(venvdir .. '/Scripts/python.exe') ~= 0 then
   vim.g.python3_host_prog = venvdir .. '/Scripts/python.exe'
-elseif vim.fn.isdirectory(venvdir) then
+elseif vim.fn.exists(venvdir .. '/bin/python') ~= 0 then
   vim.g.python3_host_prog = venvdir .. '/bin/python'
 end
