@@ -81,24 +81,32 @@ return {
       use_diagnostic_signs = true,
     },
     keys = {
-      { '<leader>x', '<cmd>TroubleToggle document_diagnostics<CR>', desc = 'Show document diagnostics' },
-      { '<leader>X', '<cmd>TroubleToggle workspace_diagnostics<CR>', desc = 'Show workspace diagnostics' },
-      { '<leader>L', '<cmd>TroubleToggle loclist<CR>', desc = 'Show location list' },
-      { '<leader>U', '<cmd>TroubleToggle quickfix<CR>', desc = 'Show quickfix list' },
-      { '[q',
-        function()
-          require('trouble').open()
-          require('trouble').previous({ skip_groups = true, jump = true })
-        end,
-        desc = 'Previous trouble/quickfix item',
-      },
-      { ']q',
-        function()
-          require('trouble').open()
-          require('trouble').next({ skip_groups = true, jump = true })
-        end,
-        desc = 'Next trouble/quickfix item',
-      },
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
+        desc = 'Buffer Diagnostics (Trouble)' },
+      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
+        desc = 'Diagnostics (Trouble)' },
+      { '<leader>xc', '<cmd>Trouble symbols toggle focus=false<CR>',
+        desc = 'Symbols (Trouble)' },
+      { '<leader>xl', '<cmd>Trouble lsp toggle focus=false win.position=right<CR>',
+        desc = 'LSP Definitions / references / ... (Trouble)' },
+      { '<leader>xL', '<cmd>Trouble loclist toggle<CR>',
+        desc = 'Location List (Trouble)' },
+      { '<leader>xQ', '<cmd>Trouble qflist toggle<CR>',
+        desc = 'Quickfix List (Trouble)' },
+      -- { '[q',
+      --   function()
+      --     require('trouble').open()
+      --     require('trouble').previous({ skip_groups = true, jump = true })
+      --   end,
+      --   desc = 'Previous trouble/quickfix item',
+      -- },
+      -- { ']q',
+      --   function()
+      --     require('trouble').open()
+      --     require('trouble').next({ skip_groups = true, jump = true })
+      --   end,
+      --   desc = 'Next trouble/quickfix item',
+      -- },
     },
   },
 
