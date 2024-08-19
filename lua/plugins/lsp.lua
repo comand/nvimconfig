@@ -198,7 +198,9 @@ return {
         ['clangd'] = function ()
           require('lspconfig')['clangd'].setup {
               cmd = {'clangd', '--enable-config', '--limit-results=0'},
-              capabilities = capabilities,
+              capabilities = vim.tbl_extend('keep', capabilities, {
+                offsetEncoding = 'utf-16',
+              }),
               settings = opts.servers['clangd'],
               flags = { debounce_text_changes = 150 },
               on_attach = function(client, bufnr)
