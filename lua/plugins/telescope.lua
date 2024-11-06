@@ -4,10 +4,18 @@ return {
     dependencies = {
       "nvim-lua/plenary.nvim",
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+      {
+        'benfowler/telescope-luasnip.nvim',
+        dependencies = { 'nvim-telescope/telescope.nvim' },
+        keys = {
+          {'<Leader>ts', '<cmd>Telescope luasnip<CR>', desc = 'Telescope: snippets'},
+        },
+      },
     },
     config = function()
       local telescope = require('telescope')
       telescope.load_extension("fzf")
+      telescope.load_extension("luasnip")
 
       local actions = require('telescope.actions')
 

@@ -1,12 +1,17 @@
 return {
+  -- Snippets
   {
-    "SirVer/UltiSnips",
-    event = 'InsertEnter',
-    dependencies = {
-      "honza/vim-snippets",
-    },
+    'L3MON4D3/LuaSnip',
+    dependencies = { "rafamadriz/friendly-snippets" },
+    version = 'v2.*',
+    run = 'make install_jsregexp',
+    config = function()
+      pcall(require, "config.site.snippets")
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
   },
 
+  -- Completion
   {
     "hrsh7th/nvim-cmp",
     event = 'InsertEnter',
@@ -17,18 +22,18 @@ return {
       "hrsh7th/cmp-nvim-lsp",
       'hrsh7th/cmp-nvim-lsp-signature-help',
       "hrsh7th/cmp-nvim-lua",
-      "quangnguyen30192/cmp-nvim-ultisnips",
+      "saadparwaiz1/cmp_luasnip",
     },
 
     config = function()
       vim.api.nvim_set_hl(0, 'CmpGhostText', { link = 'Comment', default = true })
+      local luasnip = require('luasnip')
       local cmp = require('cmp')
-      local cmp_ultisnips_mappings = require('cmp_nvim_ultisnips.mappings')
       cmp.setup  {
-        snippet = {
+       snippet = {
           expand = function(args)
-            vim.fn["UltiSnips#Anon"](args.body)
-          end,
+            luasnip.lsp_expand(args.body)
+          end
         },
         window = {
           completion = cmp.config.window.bordered(),
@@ -46,19 +51,38 @@ return {
             i = cmp.mapping.abort(),
             c = cmp.mapping.close(),
           }),
-          -- Accept currently selected item. If none selected, `select` first item.
-          -- Set `select` to `false` to only confirm explicitly selected items.
-          ["<CR>"] = cmp.mapping.confirm({ select = false }),
-          ["<Tab>"] = cmp.mapping(
-            function(fallback)
-              cmp_ultisnips_mappings.expand_or_jump_forwards(fallback)
-            end,
-            { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(
-            function(fallback)
-              cmp_ultisnips_mappings.jump_backwards(fallback)
-            end,
-            { "i", "s" }),
+
+          ['<CR>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              if luasnip.expandable() then
+                luasnip.expand()
+              else
+                cmp.confirm({select = true})
+              end
+            else
+              fallback()
+            end
+          end),
+
+          ['<Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_next_item()
+            elseif luasnip.locally_jumpable(1) then
+              luasnip.jump(1)
+            else
+              fallback()
+            end
+          end, {'i', 's'}),
+
+          ['<S-Tab>'] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
+            elseif luasnip.locally_jumpable(-1) then
+              luasnip.jump(-1)
+            else
+              fallback()
+            end
+          end, {'i', 's'}),
         },
         preselect = cmp.PreselectMode.None,
         formatting = {
@@ -69,7 +93,7 @@ return {
             vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
             vim_item.menu = ({
               nvim_lsp = "[LSP]",
-              ultisnips = "[Snip]",
+              luasnip = "[Snip]",
               buffer = "[Buf]",
               path = "[Path]",
             })[entry.source.name]
@@ -89,12 +113,12 @@ return {
           },
         },
         sources = {
-          { name = "nvim_lsp" },
-          { name = 'nvim_lsp_signature_help' },
-          { name = "nvim_lua" },
-          { name = "ultisnips" },
-          { name = "buffer" },
-          { name = "path" },
+          { name = "nvim_lsp", priority = 8 },
+          { name = 'nvim_lsp_signature_help', priority = 8 },
+          { name = "buffer", priority = 7, keyword_length = 5 },
+          { name = "nvim_lua", priority = 5 },
+          { name = "luasnip", priority = 5 },
+          { name = "path", priority = 4 },
         },
         confirm_opts = {
           behavior = cmp.ConfirmBehavior.Replace,
