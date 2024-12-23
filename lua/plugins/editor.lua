@@ -72,6 +72,12 @@ return {
   },
 
   {
+    'kevinhwang91/nvim-bqf',
+    dependencies = { 'junegunn/fzf' },
+    ft = 'qf',
+  },
+
+  {
     'folke/trouble.nvim',
     dependencies = {
       'nvim-tree/nvim-web-devicons',
