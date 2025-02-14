@@ -78,20 +78,6 @@ return {
         desc = 'Location List (Trouble)' },
       { '<leader>xQ', '<cmd>Trouble qflist toggle<CR>',
         desc = 'Quickfix List (Trouble)' },
-      -- { '[q',
-      --   function()
-      --     require('trouble').open()
-      --     require('trouble').previous({ skip_groups = true, jump = true })
-      --   end,
-      --   desc = 'Previous trouble/quickfix item',
-      -- },
-      -- { ']q',
-      --   function()
-      --     require('trouble').open()
-      --     require('trouble').next({ skip_groups = true, jump = true })
-      --   end,
-      --   desc = 'Next trouble/quickfix item',
-      -- },
     },
   },
 
