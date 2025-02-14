@@ -6,6 +6,7 @@ end
 nmap('<Tab>l', ':set invlist list?<CR>', 'Toggle list chars')
 nmap('<Tab>n', ':set invnumber number?<CR>', 'Toggle line numbers')
 nmap('<Tab>h', ':set invhlsearch hlsearch?<CR>', 'Toggle search highlight')
+nmap('<Tab>s', ':set invspell spell?<CR>', 'Toggle spell check')
 nmap('<Tab>o', function()
   local value = vim.api.nvim_get_option_value('colorcolumn', {})
   if value == '' then
