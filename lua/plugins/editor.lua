@@ -36,22 +36,8 @@ return {
     "numToStr/Comment.nvim",
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
-      {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        config = function()
-          -- require('ts_context_commentstring').setup({
-          --   enable_autocmd = true,
-          -- })
-          vim.g.skip_ts_context_commentstring_module = true
-        end,
-      },
     },
     event = "VeryLazy",
-    opts = function ()
-      return {
-        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-      }
-    end,
   },
 
   {
@@ -185,30 +171,5 @@ return {
     build = function() vim.fn["mkdp#util#install"]() end,
   },
 
-  {
-    'ii14/neorepl.nvim',
-    cmd = { 'Repl' },
-    keys = {
-      {
-        '<leader>re',
-        function()
-          -- get current buffer and window
-          local buf = vim.api.nvim_get_current_buf()
-          local win = vim.api.nvim_get_current_win()
-          -- create a new split for the repl
-          vim.cmd('split')
-          -- spawn repl and set the context to our buffer
-          require('neorepl').new{
-            lang = 'vim',
-            buffer = buf,
-            window = win,
-          }
-          -- resize repl window and make it fixed height
-          vim.cmd('resize 10 | setl winfixheight')
-        end,
-        desc = 'Neorepl'
-      },
-    }
-  },
 }
 --
