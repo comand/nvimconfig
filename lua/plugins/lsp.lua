@@ -34,13 +34,7 @@ return {
       {'williamboman/mason.nvim', cmd = 'Mason',
         config = function() require('mason').setup() end },
       'williamboman/mason-lspconfig.nvim',
-      {'p00f/clangd_extensions.nvim',
-        opts = {
-          inlay_hints = {
-            inline = false, -- works on >=0.10, but it's distracting.
-          },
-        },
-      },
+      'p00f/clangd_extensions.nvim',
       {'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
         config = function() require('toggle_lsp_diagnostics').init() end },
       {'j-hui/fidget.nvim', opts = {} },
@@ -205,8 +199,6 @@ return {
               flags = { debounce_text_changes = 150 },
               on_attach = function(client, bufnr)
                 on_attach(client, bufnr)
-                require('clangd_extensions.inlay_hints').setup_autocmd()
-                require('clangd_extensions.inlay_hints').set_inlay_hints()
                 vim.keymap.set('n', '<C-H>', function()
                   client.request('textDocument/switchSourceHeader',
                     { uri = vim.uri_from_bufnr(bufnr) },
