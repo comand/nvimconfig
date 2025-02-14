@@ -8,7 +8,7 @@ return {
       {
         "<Leader>nd",
         function()
-          require("notify").dismiss({ silent = true, pending = true })
+          require("notify").clear_history()
         end,
         desc = "Dismiss all notifications",
       },
