@@ -1,5 +1,5 @@
 if vim.g.neovide then
-  vim.o.guifont = "CommitMono,Symbols_Nerd_Font_Mono:h10.5"
+  vim.o.guifont = "CommitMono,Symbols_Nerd_Font_Mono:h14"
   vim.g.neovide_remember_window_size = true
   vim.g.neovide_padding_top = 2
   vim.g.neovide_padding_bottom = 2
