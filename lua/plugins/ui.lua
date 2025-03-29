@@ -2,49 +2,32 @@ return {
   'nvim-tree/nvim-web-devicons',   -- file type icons, etc.
 
   {
-    "rcarriga/nvim-notify",
-    event = 'VeryLazy',
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
     keys = {
-      {
-        "<Leader>nd",
-        function()
-          require("notify").clear_history()
-        end,
-        desc = "Dismiss all notifications",
-      },
+      { "<Leader>n", function()
+            require('snacks').notifier.show_history()
+          end, desc = 'Show notification history' },
+      { "<Tab>b", function()
+          local snacks = require('snacks')
+          if snacks.indent.enabled then
+            snacks.indent.disable()
+          else
+            snacks.indent.enable()
+          end
+        end, desc = 'Toggle indent guides' },
     },
     opts = {
-      timeout = 3000,
-      max_height = function()
-        return math.floor(vim.o.lines * 0.75)
-      end,
-      max_width = function()
-        return math.floor(vim.o.columns * 0.75)
-      end,
-      on_open = function(win)
-        vim.api.nvim_win_set_config(win, { zindex = 100 })
-      end,
+      bigfile = { enabled = true },
+      indent = {
+        enabled = true,
+        animate = { enabled = false },
+        char = "│",
+      },
+      input = { enabled = true },
+      notifier = { enabled = true, style = 'fancy' },
     },
-    config = function(_, opts)
-      local nvim_notify = require('notify')
-      nvim_notify.setup(opts)
-      vim.notify = nvim_notify
-    end,
-  },
-
-  {
-    "stevearc/dressing.nvim",
-    event = 'VeryLazy',
-    init = function()
-      vim.ui.select = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.select(...)
-      end
-      vim.ui.input = function(...)
-        require("lazy").load({ plugins = { "dressing.nvim" } })
-        return vim.ui.input(...)
-      end
-    end,
   },
 
   {
@@ -90,7 +73,7 @@ return {
           {
             "filename",
             file_status = true,
-            path = 1,
+           path = 1,
             symbols = {
               modified = require('config.icons').file.modified .. ' ',
               readonly = require('config.icons').file.readonly .. ' ',
@@ -102,33 +85,6 @@ return {
         },
         lualine_x = {
            { "filetype", icon_only = true, separator = '' },
-        },
-      },
-    },
-  },
-
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = 'ibl',
-    event = { "BufReadPost", "BufNewFile" },
-    keys = {
-      { "<Tab>b", ':IBLToggle<CR>', desc = "Toggle indent-blankline" },
-    },
-    opts = {
-      scope = { enabled = false },
-      indent = {
-        char = "│",
-        tab_char = "│",
-      },
-      exclude = {
-        filetypes = {
-          'help',
-          'Trouble',
-          'trouble',
-          'lazy',
-          'mason',
-          'notify',
-          'toggleterm',
         },
       },
     },

@@ -35,23 +35,26 @@ return {
         config = function() require('mason').setup() end },
       'williamboman/mason-lspconfig.nvim',
       'p00f/clangd_extensions.nvim',
-      {'WhoIsSethDaniel/toggle-lsp-diagnostics.nvim',
-        config = function() require('toggle_lsp_diagnostics').init() end },
       {'j-hui/fidget.nvim', opts = {} },
     },
 
     opts = {
       diagnostic = {
-        signs = true,
-        sign_icons = {
-          { name = 'DiagnosticSignError', text = require('config.icons').diagnostics.error },
-          { name = 'DiagnosticSignWarn',  text = require('config.icons').diagnostics.warn  },
-          { name = 'DiagnosticSignHint',  text = require('config.icons').diagnostics.hint  },
-          { name = 'DiagnosticSignInfo',  text = require('config.icons').diagnostics.info  },
+        signs = {
+          active = true,
+          text = {
+            [vim.diagnostic.severity.ERROR] = require('config.icons').diagnostics.error,
+            [vim.diagnostic.severity.WARN] = require('config.icons').diagnostics.warn,
+            [vim.diagnostic.severity.HINT] = require('config.icons').diagnostics.hint,
+            [vim.diagnostic.severity.INFO] = require('config.icons').diagnostics.info,
+          },
         },
+        virtual_text = true,
+        -- virtual_lines = false,
         update_in_insert = false,
         underline = { severity = { min = vim.diagnostic.severity.WARN } },
         severity_sort = true,
+        jump = { float = true },
         float = {
           focusable = false,
           style = 'minimal',
@@ -96,6 +99,23 @@ return {
     },
 
     config = function(_, opts)
+      -- Logs get huge very quickly -- set "debug" for debugging.
+      vim.lsp.set_log_level("off")
+
+      local function bordered_hover(_opts)
+        _opts = _opts or {}
+        return vim.lsp.buf.hover(vim.tbl_deep_extend("force", _opts, {
+          border = "rounded",
+        }))
+      end
+
+      local function bordered_signature_help(_opts)
+        _opts = _opts or {}
+        return vim.lsp.buf.signature_help(vim.tbl_deep_extend("force", _opts, {
+          border = "rounded",
+        }))
+      end
+
       local on_attach = function(client, bufnr)
         -- Illuminate
         require('illuminate').on_attach(client)
@@ -110,9 +130,14 @@ return {
             { remap = false, silent = true, buffer = bufnr, desc = desc })
         end
 
-        map('n', '<Tab>v',
-          require'toggle_lsp_diagnostics'.toggle_virtual_text,
-          'Toggle diagnostic vtext')
+        map('n', '<Tab>d', function()
+            local vtext = not vim.diagnostic.config().virtual_text
+            vim.diagnostic.config({ virtual_text = vtext })
+          end, 'Toggle virtual diagnostic text')
+        map('n', '<Tab>v', function()
+            local vlines = not vim.diagnostic.config().virtual_lines
+            vim.diagnostic.config({ virtual_lines = vlines })
+          end, 'Toggle virtual diagnostic lines')
 
         map('n', '<leader>rn', vim.lsp.buf.rename, 'LSP: [r]e[n]ame')
         map('n', '<leader>ca', vim.lsp.buf.code_action, 'LSP: [c]ode [a]ction')
@@ -120,12 +145,10 @@ return {
         vim.keymap.set('v', '<leader>cf', vim.lsp.buf.format,
           { silent = true, desc = 'LSP: [c]ode [f]ormatting' })
 
-        map('n', 'K', vim.lsp.buf.hover, 'Show information')
+        map('n', 'K', bordered_hover, 'Show information')
         map('n', '<C-,>', function()
             vim.diagnostic.open_float(nil, { scope = 'line' })
           end, 'Show diagnostics')
-        map('n', '[,', vim.diagnostic.goto_prev, 'Previous diagnostic')
-        map('n', '],', vim.diagnostic.goto_next, 'Next diagnostic')
 
         map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
         map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
@@ -135,25 +158,11 @@ return {
           require('telescope.builtin').lsp_references, 'Show references')
         map('n', '<leader>ds',
           require('telescope.builtin').lsp_document_symbols, 'Document symbols')
-        --[[ map('n', '<leader>ws', ]]
-        --[[   require('telescope.builtin').lsp_dynamic_workspace_symbols, 'Workspace symbols') ]]
-        map('n', '<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
+        map('n', '<C-k>', bordered_signature_help, 'Signature documentation')
       end
 
       -- Set up diagnostics.
       vim.diagnostic.config(opts.diagnostic)
-      for _, sign in ipairs(opts.diagnostic.sign_icons) do
-        vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = '' })
-      end
-
-      vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = 'rounded',
-        width = 60,
-      })
-      vim.lsp.signatureHelp = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = 'rounded',
-        width = 60,
-      })
 
       -- LSP config
       local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -199,24 +208,11 @@ return {
               flags = { debounce_text_changes = 150 },
               on_attach = function(client, bufnr)
                 on_attach(client, bufnr)
-                vim.keymap.set('n', '<C-H>', function()
-                  client.request('textDocument/switchSourceHeader',
-                    { uri = vim.uri_from_bufnr(bufnr) },
-                    function(err, result)
-                      if err then
-                        error(tostring(err))
-                      end
-                      if not result then
-                        print 'Corresponding file cannot be determined'
-                        return
-                      end
-                      vim.api.nvim_command('edit ' .. vim.uri_to_fname(result))
-                    end, bufnr)
-                end,
+                vim.keymap.set('n', '<C-H>', ':ClangdSwitchSourceHeader<CR>',
                   { remap = true, silent = true, buffer = bufnr,
                     desc = 'Switch to source/header file' })
               end,
-              }
+            }
         end,
       }
 

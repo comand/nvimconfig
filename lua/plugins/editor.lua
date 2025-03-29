@@ -6,12 +6,6 @@ return {
   -- goto file line numbers on startup
   { "wsdjeg/vim-fetch", lazy = false },
 
-  -- disable features for big files
-  {
-    'pteroctopus/faster.nvim',
-    event = 'BufReadPre',
-  },
-
   {
     "simnalamburt/vim-mundo",
     config = function()
