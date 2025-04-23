@@ -136,27 +136,4 @@ return {
       { "<Tab>i", ":IlluminateToggleBuf<CR>", desc = "Toggle illuminate" },
     },
   },
-
-  {
-    "anuvyklack/pretty-fold.nvim",
-    event = { 'BufReadPost', 'BufNewFile' },
-    dependencies = {
-      "anuvyklack/keymap-amend.nvim",
-    },
-    opts = {
-      fill_char = "╌",
-      process_comment_signs = "delete",
-      sections = {
-        left = {
-          "»",
-          "content",
-        },
-        right = {
-          " ",
-          "number_of_folded_lines",
-          " ",
-        },
-      },
-    },
-  },
 }
