@@ -49,7 +49,7 @@ return {
       },
       highlight = {
         enable = true, -- false will disable the whole extension
-        -- additional_vim_regex_highlighting = true,
+        additional_vim_regex_highlighting = { "python" },
       },
       indent = {
         enable = false,
