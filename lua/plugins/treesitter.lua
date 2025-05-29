@@ -1,11 +1,9 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-    },
     build = ":TSUpdate",
-    event = { "BufNewFile", "BufReadPost", "VeryLazy" },
+    lazy = false,
+    branch = 'master',
     opts = {
       ensure_installed = {
         "bash",
@@ -78,5 +76,14 @@ return {
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
     end,
+  },
+
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = {
+      { 'nvim-treesitter', branch = 'master' },
+    },
+    branch = 'master',
+    event = { "BufNewFile", "BufReadPost" },
   },
 }
