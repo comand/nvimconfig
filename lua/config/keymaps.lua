@@ -51,7 +51,6 @@ nmap('<C-s>', ':%s/<C-R><C-W>/', 'Search and replace word under cursor')
 -- Misc
 nmap('<Leader>cd', ':cd %:p:h<CR>:pwd<CR>', 'Change directory to current buffer')
 nmap('QQ', 'ZQ', 'Quick Quit')
---nmap('y', 'y$')
 
 vim.keymap.set('v', '<LeftRelease>', '*ygv',
   { desc = 'Yank to clipboard on mouse release' })
