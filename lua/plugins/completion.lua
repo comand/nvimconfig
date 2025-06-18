@@ -23,11 +23,20 @@ return {
       'hrsh7th/cmp-nvim-lsp-signature-help',
       "hrsh7th/cmp-nvim-lua",
       "saadparwaiz1/cmp_luasnip",
+      "xzbdmw/colorful-menu.nvim",
+      "onsails/lspkind.nvim",
     },
 
     config = function()
       vim.api.nvim_set_hl(0, 'CmpGhostText', { link = 'Comment', default = true })
+
+      local lspkind = require('lspkind')
+      lspkind.init {
+        symbol_map = require('config.icons').kinds,
+      }
+
       local luasnip = require('luasnip')
+
       local cmp = require('cmp')
       cmp.setup  {
        snippet = {
@@ -77,16 +86,25 @@ return {
         preselect = cmp.PreselectMode.None,
         formatting = {
           fields = { "kind", "abbr", "menu" },
+
           format = function(entry, vim_item)
-            -- Kind icons
-            local kind_icons = require('config.icons').kinds
-            vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-            vim_item.menu = ({
-              nvim_lsp = "[LSP]",
-              luasnip = "[Snip]",
-              buffer = "[Buf]",
-              path = "[Path]",
-            })[entry.source.name]
+            local kind = lspkind.cmp_format({
+                mode = "symbol",
+            })(entry, vim.deepcopy(vim_item))
+
+            -- highlight_info is nil means we are missing the ts parser, it's
+            -- better to fallback to use default `vim_item.abbr`. What this plugin
+            -- offers is two fields: `vim_item.abbr_hl_group` and `vim_item.abbr`.
+            local highlights_info = require("colorful-menu").cmp_highlights(entry)
+            if highlights_info ~= nil then
+                vim_item.abbr_hl_group = highlights_info.highlights
+                vim_item.abbr = highlights_info.text
+            end
+
+            local strings = vim.split(kind.kind, "%s", { trimempty = true })
+            vim_item.kind = " " .. (strings[1] or "") .. " "
+            vim_item.menu = ""
+
             return vim_item
           end,
         },
@@ -107,7 +125,7 @@ return {
           { name = 'nvim_lsp_signature_help', priority = 8 },
           { name = "buffer", priority = 7, keyword_length = 5 },
           { name = "nvim_lua", priority = 5 },
-          { name = "luasnip", priority = 5 },
+          { name = "luasnip", priority = 8 },
           { name = "path", priority = 4 },
         },
         confirm_opts = {
@@ -116,7 +134,6 @@ return {
         },
         experimental = {
           ghost_text = { hl_group = "CmpGhostText" },
-          native_menu = false,
         },
       }
     end,
