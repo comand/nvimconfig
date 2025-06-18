@@ -7,6 +7,7 @@ nmap('<Tab>l', ':set invlist list?<CR>', 'Toggle list chars')
 nmap('<Tab>n', ':set invnumber number?<CR>', 'Toggle line numbers')
 nmap('<Tab>h', ':set invhlsearch hlsearch?<CR>', 'Toggle search highlight')
 nmap('<Tab>s', ':set invspell spell?<CR>', 'Toggle spell check')
+
 nmap('<Tab>o', function()
   local value = vim.api.nvim_get_option_value('colorcolumn', {})
   if value == '' then
@@ -15,6 +16,19 @@ nmap('<Tab>o', function()
     vim.api.nvim_set_option_value('colorcolumn', value, {})
   end
 end, 'Toggle colorcolumn')
+
+nmap('<Tab>f', function()
+  local curwin = vim.api.nvim_get_current_win()
+  local windows = vim.fn.getwininfo()
+  for _, win in pairs(windows) do
+    if win["quickfix"] == 1 then
+      vim.cmd.cclose()
+      return
+    end
+  end
+  vim.cmd.copen()
+  vim.api.nvim_set_current_win(curwin)
+end, 'Toggle Quickfix Window')
 
 -- Buffer navigation
 nmap('<C-n>', ':bnext<CR>', 'Next buffer')
