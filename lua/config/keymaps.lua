@@ -13,7 +13,7 @@ nmap('<Tab>o', function()
   if value == '' then
     vim.api.nvim_set_option_value('colorcolumn', '80', {})
   else
-    vim.api.nvim_set_option_value('colorcolumn', value, {})
+    vim.api.nvim_set_option_value('colorcolumn', '', {})
   end
 end, 'Toggle colorcolumn')
 
