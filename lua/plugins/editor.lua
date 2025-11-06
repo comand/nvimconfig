@@ -2,9 +2,9 @@ return {
   -- case aware search/replace
   { "tpope/vim-abolish", event = 'VeryLazy' },
   -- file mode utilities
-  { "tpope/vim-eunuch", event = 'VeryLazy' },
+  { "tpope/vim-eunuch",  event = 'VeryLazy' },
   -- goto file line numbers on startup
-  { "wsdjeg/vim-fetch", lazy = false },
+  { "wsdjeg/vim-fetch",  lazy = false },
 
   {
     "simnalamburt/vim-mundo",
@@ -13,7 +13,7 @@ return {
       vim.g.mundo_preview_height = 40
       vim.g.mundo_preview_bottom = true
     end,
-    cmd = {'MundoToggle'},
+    cmd = { 'MundoToggle' },
     keys = {
       { "<Leader>u", ":MundoToggle<CR>", noremap = true, desc = "Toggle: undo tree" },
     },
@@ -53,23 +53,41 @@ return {
     dependencies = {
       'nvim-tree/nvim-web-devicons',
     },
-    cmd = {'TroubleToggle', 'Trouble'},
+    cmd = { 'TroubleToggle', 'Trouble' },
     opts = {
       use_diagnostic_signs = true,
     },
     keys = {
-      { '<leader>xx', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
-        desc = 'Buffer Diagnostics (Trouble)' },
-      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
-        desc = 'Diagnostics (Trouble)' },
-      { '<leader>xc', '<cmd>Trouble symbols toggle focus=false<CR>',
-        desc = 'Symbols (Trouble)' },
-      { '<leader>xl', '<cmd>Trouble lsp toggle focus=false win.position=right<CR>',
-        desc = 'LSP Definitions / references / ... (Trouble)' },
-      { '<leader>xL', '<cmd>Trouble loclist toggle<CR>',
-        desc = 'Location List (Trouble)' },
-      { '<leader>xQ', '<cmd>Trouble qflist toggle<CR>',
-        desc = 'Quickfix List (Trouble)' },
+      {
+        '<leader>xx',
+        '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
+        desc = 'Buffer Diagnostics (Trouble)'
+      },
+      {
+        '<leader>xX',
+        '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
+        desc = 'Diagnostics (Trouble)'
+      },
+      {
+        '<leader>xc',
+        '<cmd>Trouble symbols toggle focus=false<CR>',
+        desc = 'Symbols (Trouble)'
+      },
+      {
+        '<leader>xl',
+        '<cmd>Trouble lsp toggle focus=false win.position=right<CR>',
+        desc = 'LSP Definitions / references / ... (Trouble)'
+      },
+      {
+        '<leader>xL',
+        '<cmd>Trouble loclist toggle<CR>',
+        desc = 'Location List (Trouble)'
+      },
+      {
+        '<leader>xQ',
+        '<cmd>Trouble qflist toggle<CR>',
+        desc = 'Quickfix List (Trouble)'
+      },
     },
   },
 
@@ -79,7 +97,7 @@ return {
     event = { 'BufReadPost', 'BufNewFile' },
     cmd = { 'TodoTrouble', 'TodoTelescope' },
     keys = {
-      { "<leader>xt", "<cmd>TodoTrouble<cr>", desc = "Todo (Trouble)" },
+      { "<leader>xt", "<cmd>TodoTrouble<cr>",   desc = "Todo (Trouble)" },
       { "<leader>fT", "<cmd>TodoTelescope<cr>", desc = "Todo (Telescope)" },
     },
     opts = {},
@@ -90,7 +108,7 @@ return {
     ft = { 'python', 'lua', 'markdown', 'cpp', 'bash' },
     build = ':DirtytalkUpdate',
     init = function()
-      vim.opt_local.spelllang = {'en', 'programming'}
+      vim.opt_local.spelllang = { 'en', 'programming' }
     end,
   },
 
@@ -103,7 +121,7 @@ return {
       'nvim-telescope/telescope.nvim',
     },
     keys = {
-      { '<leader>G', function() require('neogit').open({kind = 'auto'}) end, desc = 'Neogit' },
+      { '<leader>G', function() require('neogit').open({ kind = 'auto' }) end, desc = 'Neogit' },
     },
   },
 

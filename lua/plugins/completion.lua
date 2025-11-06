@@ -38,8 +38,8 @@ return {
       local luasnip = require('luasnip')
 
       local cmp = require('cmp')
-      cmp.setup  {
-       snippet = {
+      cmp.setup {
+        snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
           end
@@ -71,7 +71,7 @@ return {
             else
               fallback()
             end
-          end, {'i', 's'}),
+          end, { 'i', 's' }),
 
           ['<S-Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -81,7 +81,7 @@ return {
             else
               fallback()
             end
-          end, {'i', 's'}),
+          end, { 'i', 's' }),
         },
         preselect = cmp.PreselectMode.None,
         formatting = {
@@ -89,7 +89,7 @@ return {
 
           format = function(entry, vim_item)
             local kind = lspkind.cmp_format({
-                mode = "symbol",
+              mode = "symbol",
             })(entry, vim.deepcopy(vim_item))
 
             -- highlight_info is nil means we are missing the ts parser, it's
@@ -97,8 +97,8 @@ return {
             -- offers is two fields: `vim_item.abbr_hl_group` and `vim_item.abbr`.
             local highlights_info = require("colorful-menu").cmp_highlights(entry)
             if highlights_info ~= nil then
-                vim_item.abbr_hl_group = highlights_info.highlights
-                vim_item.abbr = highlights_info.text
+              vim_item.abbr_hl_group = highlights_info.highlights
+              vim_item.abbr = highlights_info.text
             end
 
             local strings = vim.split(kind.kind, "%s", { trimempty = true })
@@ -121,12 +121,12 @@ return {
           },
         },
         sources = {
-          { name = "nvim_lsp", priority = 8 },
+          { name = "nvim_lsp",                priority = 8 },
           { name = 'nvim_lsp_signature_help', priority = 8 },
-          { name = "buffer", priority = 7, keyword_length = 5 },
-          { name = "nvim_lua", priority = 5 },
-          { name = "luasnip", priority = 8 },
-          { name = "path", priority = 4 },
+          { name = "buffer",                  priority = 7, keyword_length = 5 },
+          { name = "nvim_lua",                priority = 5 },
+          { name = "luasnip",                 priority = 8 },
+          { name = "path",                    priority = 4 },
         },
         confirm_opts = {
           behavior = cmp.ConfirmBehavior.Replace,

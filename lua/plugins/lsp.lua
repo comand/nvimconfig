@@ -16,25 +16,32 @@ return {
       },
     },
     dependencies = {
-      { "nvim-treesitter/nvim-treesitter", branch='master' },
+      { "nvim-treesitter/nvim-treesitter", branch = 'master' },
       "nvim-tree/nvim-web-devicons"
     },
     keys = {
-      { '<leader>a', '<cmd>AerialToggle<cr>',
-        noremap = true, silent = true, desc = 'Symbol navigator'
+      {
+        '<leader>a',
+        '<cmd>AerialToggle<cr>',
+        noremap = true,
+        silent = true,
+        desc = 'Symbol navigator'
       },
     },
   },
 
   {
     'neovim/nvim-lspconfig',
-    event = {'BufReadPre', 'BufNewFile'},
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       -- LSP
-      {'mason-org/mason.nvim', cmd = 'Mason',
-        config = function() require('mason').setup() end },
+      {
+        'mason-org/mason.nvim',
+        cmd = 'Mason',
+        config = function() require('mason').setup() end
+      },
       'p00f/clangd_extensions.nvim',
-      {'j-hui/fidget.nvim', opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
     },
 
     opts = {
@@ -95,11 +102,11 @@ return {
 
       -- Unbind neovim's default LSP keys
       vim.keymap.del('n', 'grn')
-      vim.keymap.del({'n', 'x'}, 'gra')
+      vim.keymap.del({ 'n', 'x' }, 'gra')
       vim.keymap.del('n', 'grr')
       vim.keymap.del('n', 'gri')
       vim.keymap.del('n', 'gO')
-      vim.keymap.del({'i', 's'}, '<C-S>')
+      vim.keymap.del({ 'i', 's' }, '<C-S>')
 
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(ev)
@@ -115,26 +122,26 @@ return {
           end
 
           map('n', '<Tab>d', function()
-              local vtext = not vim.diagnostic.config().virtual_text
-              vim.diagnostic.config({ virtual_text = vtext })
-            end, 'Toggle virtual diagnostic text')
+            local vtext = not vim.diagnostic.config().virtual_text
+            vim.diagnostic.config({ virtual_text = vtext })
+          end, 'Toggle virtual diagnostic text')
 
           map('n', '<Tab>v', function()
-              local vlines = not vim.diagnostic.config().virtual_lines
-              vim.diagnostic.config({ virtual_lines = vlines })
-            end, 'Toggle virtual diagnostic lines')
+            local vlines = not vim.diagnostic.config().virtual_lines
+            vim.diagnostic.config({ virtual_lines = vlines })
+          end, 'Toggle virtual diagnostic lines')
 
           map('n', '<leader>rn', vim.lsp.buf.rename, 'LSP: [r]e[n]ame')
           -- map('n', '<leader>ca', vim.lsp.buf.code_action, 'LSP: [c]ode [a]ction')
           map('n', '<leader>ca', function()
-              require('tiny-code-action').code_action()
-            end, 'LSP: [c]ode [a]ction')
+            require('tiny-code-action').code_action()
+          end, 'LSP: [c]ode [a]ction')
           map('n', '<leader>cf', vim.lsp.buf.format, 'LSP: [c]ode [f]ormatting')
-          map({'n', 'v'}, '<leader>cf', vim.lsp.buf.format, 'LSP: [c]ode [f]ormatting')
+          map({ 'n', 'v' }, '<leader>cf', vim.lsp.buf.format, 'LSP: [c]ode [f]ormatting')
           map('n', 'K', bordered_hover, 'Show information')
           map('n', '<C-,>', function()
-              vim.diagnostic.open_float(nil, { scope = 'line' })
-            end, 'Show diagnostics')
+            vim.diagnostic.open_float(nil, { scope = 'line' })
+          end, 'Show diagnostics')
 
           map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
           map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
@@ -145,14 +152,14 @@ return {
           map('n', '<leader>ds',
             require('telescope.builtin').lsp_document_symbols, 'Document symbols')
           map('n', '<C-k>', bordered_signature_help, 'Signature documentation')
-      end
-    })
+        end
+      })
     end,
   },
 
   {
     'mason-org/mason-lspconfig.nvim',
-    event = {'BufReadPre', 'BufNewFile'},
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require('mason-lspconfig').setup {
         ensure_installed = {

@@ -1,4 +1,3 @@
-
 local function augroup(name)
   return vim.api.nvim_create_augroup(name, { clear = true })
 end
@@ -64,4 +63,3 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
-

@@ -30,7 +30,9 @@ return {
         local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
         lazygit:toggle()
       end,
-      noremap = true, silent = true, desc = "Open lazygit",
+      noremap = true,
+      silent = true,
+      desc = "Open lazygit",
     },
     {
       '<Leader>TD',
@@ -39,7 +41,9 @@ return {
         local ncdu = Terminal:new({ cmd = "ncdu", hidden = true })
         ncdu:toggle()
       end,
-      noremap = true, silent = true, desc = 'Open ncdu'
+      noremap = true,
+      silent = true,
+      desc = 'Open ncdu'
     },
     {
       '<Leader>TT',
@@ -48,7 +52,9 @@ return {
         local htop = Terminal:new({ cmd = "htop", hidden = true })
         htop:toggle()
       end,
-      noremap = true, silent = true, desc = 'Open htop'
+      noremap = true,
+      silent = true,
+      desc = 'Open htop'
     },
     {
       '<Leader>TP',
@@ -57,12 +63,16 @@ return {
         local python = Terminal:new({ cmd = "python", hidden = true })
         python:toggle()
       end,
-      noremap = true, silent = true, desc = 'Open python terminal'
+      noremap = true,
+      silent = true,
+      desc = 'Open python terminal'
     },
     {
       '<Leader>TB',
       '<cmd>ToggleTerm size=10 direction=horizontal<CR>',
-      noremap = true, silent = true, desc = 'Open terminal in bottom pane'
+      noremap = true,
+      silent = true,
+      desc = 'Open terminal in bottom pane'
     },
   },
 

@@ -1,8 +1,12 @@
 return {
   on_attach = function(_, bufnr)
     vim.keymap.set('n', '<C-H>', ':ClangdSwitchSourceHeader<CR>',
-      { remap = true, silent = true, buffer = bufnr,
-        desc = 'Switch to source/header file' })
+      {
+        remap = true,
+        silent = true,
+        buffer = bufnr,
+        desc = 'Switch to source/header file'
+      })
   end,
   settings = {
     cmd = {

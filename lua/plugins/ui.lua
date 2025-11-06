@@ -1,22 +1,30 @@
 return {
-  'nvim-tree/nvim-web-devicons',   -- file type icons, etc.
+  'nvim-tree/nvim-web-devicons', -- file type icons, etc.
 
   {
     'folke/snacks.nvim',
     priority = 1000,
     lazy = false,
     keys = {
-      { "<Leader>n", function()
-            require('snacks').notifier.show_history()
-          end, desc = 'Show notification history' },
-      { "<Tab>b", function()
+      {
+        "<Leader>n",
+        function()
+          require('snacks').notifier.show_history()
+        end,
+        desc = 'Show notification history'
+      },
+      {
+        "<Tab>b",
+        function()
           local snacks = require('snacks')
           if snacks.indent.enabled then
             snacks.indent.disable()
           else
             snacks.indent.enable()
           end
-        end, desc = 'Toggle indent guides' },
+        end,
+        desc = 'Toggle indent guides'
+      },
     },
     opts = {
       bigfile = { enabled = true },
@@ -38,7 +46,6 @@ return {
     },
     opts = {
       extensions = {
-        "fugitive",
         "man",
         "mundo",
         "quickfix",
@@ -73,7 +80,7 @@ return {
           {
             "filename",
             file_status = true,
-           path = 1,
+            path = 1,
             symbols = {
               modified = require('config.icons').file.modified .. ' ',
               readonly = require('config.icons').file.readonly .. ' ',
@@ -84,7 +91,7 @@ return {
           { "aerial" },
         },
         lualine_x = {
-           { "filetype", icon_only = true, separator = '' },
+          { "filetype", icon_only = true, separator = '' },
         },
       },
     },

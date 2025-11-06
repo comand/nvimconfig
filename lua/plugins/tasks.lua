@@ -3,7 +3,7 @@ return {
     'stevearc/overseer.nvim',
 
     keys = {
-      { "<Leader>m", ":Make<CR>", noremap = true, desc = "Build project" },
+      { "<Leader>m", ":Make -u<CR>", noremap = true, desc = "Build project" },
     },
 
     opts = {},

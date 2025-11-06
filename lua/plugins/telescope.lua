@@ -8,7 +8,7 @@ return {
         'benfowler/telescope-luasnip.nvim',
         dependencies = { 'nvim-telescope/telescope.nvim' },
         keys = {
-          {'<Leader>ts', '<cmd>Telescope luasnip<CR>', desc = 'Telescope: snippets'},
+          { '<Leader>ts', '<cmd>Telescope luasnip<CR>', desc = 'Telescope: snippets' },
         },
       },
     },
@@ -97,60 +97,96 @@ return {
     end,
     keys = {
       {
-        '<C-b>', function()
+        '<C-b>',
+        function()
           require('telescope.builtin').buffers { previewer = false }
         end,
-        noremap = true, silent = true, desc = 'Telescope: buffers',
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: buffers',
       },
       {
-        '<C-e>', function() require('telescope.builtin').find_files() end,
-        noremap = true, silent = true, desc = 'Telescope: find files',
+        '<C-e>',
+        function() require('telescope.builtin').find_files() end,
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: find files',
       },
       {
-        '<C-g>', function() require('telescope.builtin').live_grep() end,
-        noremap = true, silent = true, desc = 'Telescope: live grep',
+        '<C-g>',
+        function() require('telescope.builtin').live_grep() end,
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: live grep',
       },
       {
-        '<Leader>ft', function() require('telescope.builtin').grep_string() end,
-        noremap = true, silent = true, desc = 'Telescope: find term',
+        '<Leader>ft',
+        function() require('telescope.builtin').grep_string() end,
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: find term',
       },
       {
-        '<Leader>tm', function() require('telescope.builtin').marks() end,
-        noremap = true, silent = true, desc = 'Telescope: marks',
+        '<Leader>tm',
+        function() require('telescope.builtin').marks() end,
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: marks',
       },
       {
-        '<Leader>tr', function() require('telescope.builtin').registers() end,
-        noremap = true, silent = true, desc = 'Telescope: registers',
+        '<Leader>tr',
+        function() require('telescope.builtin').registers() end,
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: registers',
       },
       {
-        '<Leader>tc', function() require('telescope.builtin').commands() end,
-        noremap = true, silent = true, desc = 'Telescope: commands',
+        '<Leader>tc',
+        function() require('telescope.builtin').commands() end,
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: commands',
       },
       {
-        '<Leader>th', function() require('telescope.builtin').help_tags() end,
-        noremap = true, silent = true, desc = 'Telescope: help tags',
+        '<Leader>th',
+        function() require('telescope.builtin').help_tags() end,
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: help tags',
       },
       {
-        '<Leader>tk', function() require('telescope.builtin').keymaps() end,
-        noremap = true, silent = true, desc = 'Telescope: keymaps',
+        '<Leader>tk',
+        function() require('telescope.builtin').keymaps() end,
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: keymaps',
       },
       {
-        '<Leader>tl', function()
+        '<Leader>tl',
+        function()
           require('telescope.builtin').live_grep({ grep_open_files = true })
         end,
-        noremap = true, silent = true, desc = 'Telescope: buffer lines',
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: buffer lines',
       },
       {
-        '<Leader>ec', function()
-            require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })
+        '<Leader>ec',
+        function()
+          require('telescope.builtin').find_files({ cwd = vim.fn.stdpath('config') })
         end,
-        noremap = true, silent = true, desc = 'Telescope: [e]dit [c]onfig',
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: [e]dit [c]onfig',
       },
       {
-        '<Leader>gc', function()
-            require('telescope.builtin').live_grep({ cwd = vim.fn.stdpath('config') })
+        '<Leader>gc',
+        function()
+          require('telescope.builtin').live_grep({ cwd = vim.fn.stdpath('config') })
         end,
-        noremap = true, silent = true, desc = 'Telescope: [g]rep [c]onfig',
+        noremap = true,
+        silent = true,
+        desc = 'Telescope: [g]rep [c]onfig',
       },
     },
   },
