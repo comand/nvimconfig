@@ -16,7 +16,7 @@ return {
       },
     },
     dependencies = {
-      { "nvim-treesitter/nvim-treesitter", branch = 'master' },
+      "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons"
     },
     keys = {

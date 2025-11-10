@@ -43,6 +43,11 @@ return {
   },
 
   {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+  },
+
+  {
     'kevinhwang91/nvim-bqf',
     dependencies = { 'junegunn/fzf' },
     ft = 'qf',
