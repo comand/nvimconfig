@@ -21,7 +21,7 @@ return {
     },
     keys = {
       {
-        '<leader>a',
+        '<leader>A',
         '<cmd>AerialToggle<cr>',
         noremap = true,
         silent = true,
