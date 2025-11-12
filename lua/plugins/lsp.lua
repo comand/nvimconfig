@@ -167,7 +167,7 @@ return {
           "clangd",
           "jsonls",
           "rust_analyzer",
-          "pyright",
+          "ruff",
           "lua_ls",
         },
         automatic_enable = true,
