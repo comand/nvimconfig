@@ -133,9 +133,6 @@ return {
 
           map('n', '<leader>rn', vim.lsp.buf.rename, 'LSP: [r]e[n]ame')
           -- map('n', '<leader>ca', vim.lsp.buf.code_action, 'LSP: [c]ode [a]ction')
-          map('n', '<leader>ca', function()
-            require('tiny-code-action').code_action()
-          end, 'LSP: [c]ode [a]ction')
           map('n', '<leader>cf', vim.lsp.buf.format, 'LSP: [c]ode [f]ormatting')
           map({ 'n', 'v' }, '<leader>cf', vim.lsp.buf.format, 'LSP: [c]ode [f]ormatting')
           map('n', 'K', bordered_hover, 'Show information')
@@ -186,6 +183,12 @@ return {
     opts = {
       backend = 'difftastic',
       picker = 'snacks',
+    },
+    keys = {
+      { "<leader>ca",
+        function() require("tiny-code-action").code_action() end,
+        { desc = 'LSP: [c]ode [a]ction' }
+      },
     },
   },
 }
