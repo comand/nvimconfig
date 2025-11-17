@@ -17,9 +17,7 @@ return {
       picker = { enabled = true },
       explorer = { enabled = true },
     },
-    config = function(opts, _)
-      require 'snacks'.setup {opts}
-
+    init = function()
       vim.api.nvim_create_autocmd("ColorScheme", {
         pattern = "*",
         callback = function()
