@@ -166,6 +166,7 @@ return {
           "bashls",
           "clangd",
           "jsonls",
+          "pyright",
           "rust_analyzer",
           "ruff",
           "lua_ls",
