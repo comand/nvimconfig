@@ -60,7 +60,7 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     lazy = false,
     branch = 'main',
-    dependencies = { 'nvim-treesitter' },
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
     opts = {
       select = {
         lookahead = true,
@@ -171,5 +171,10 @@ return {
       end, { desc = "textobject: goto previous c[l]ass end" })
 
     end,
+  },
+  {
+    'nvim-treesitter/nvim-treesitter-context',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    lazy = false,
   },
 }
