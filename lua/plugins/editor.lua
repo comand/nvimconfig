@@ -7,19 +7,6 @@ return {
   { "wsdjeg/vim-fetch",  lazy = false },
 
   {
-    "simnalamburt/vim-mundo",
-    config = function()
-      vim.g.mundo_width = 30
-      vim.g.mundo_preview_height = 40
-      vim.g.mundo_preview_bottom = true
-    end,
-    cmd = { 'MundoToggle' },
-    keys = {
-      { "<Leader>u", ":MundoToggle<CR>", noremap = true, desc = "Toggle: undo tree" },
-    },
-  },
-
-  {
     "numToStr/Comment.nvim",
     event = "VeryLazy",
     opts = {}
@@ -62,36 +49,31 @@ return {
     opts = {
       use_diagnostic_signs = true,
     },
+    specs = {
+      "folke/snacks.nvim",
+      opts = function(_, opts)
+        return vim.tbl_deep_extend("force", opts or {}, {
+          picker = {
+            actions = require("trouble.sources.snacks").actions,
+            win = {
+              input = {
+                keys = {
+                  ["<c-t>"] = {
+                    "trouble_open",
+                    mode = { "n", "i" },
+                  },
+                },
+              },
+            },
+          },
+        })
+      end,
+    },
     keys = {
       {
         '<leader>xx',
         '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
         desc = 'Buffer Diagnostics (Trouble)'
-      },
-      {
-        '<leader>xX',
-        '<cmd>Trouble diagnostics toggle filter.buf=0<CR>',
-        desc = 'Diagnostics (Trouble)'
-      },
-      {
-        '<leader>xc',
-        '<cmd>Trouble symbols toggle focus=false<CR>',
-        desc = 'Symbols (Trouble)'
-      },
-      {
-        '<leader>xl',
-        '<cmd>Trouble lsp toggle focus=false win.position=right<CR>',
-        desc = 'LSP Definitions / references / ... (Trouble)'
-      },
-      {
-        '<leader>xL',
-        '<cmd>Trouble loclist toggle<CR>',
-        desc = 'Location List (Trouble)'
-      },
-      {
-        '<leader>xQ',
-        '<cmd>Trouble qflist toggle<CR>',
-        desc = 'Quickfix List (Trouble)'
       },
     },
   },
@@ -99,13 +81,11 @@ return {
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },
-    event = { 'BufReadPost', 'BufNewFile' },
-    cmd = { 'TodoTrouble', 'TodoTelescope' },
-    keys = {
-      { "<leader>xt", "<cmd>TodoTrouble<cr>",   desc = "Todo (Trouble)" },
-      { "<leader>fT", "<cmd>TodoTelescope<cr>", desc = "Todo (Telescope)" },
-    },
     opts = {},
+    keys = {
+      { "<leader>st", function() require 'snacks'.picker.todo_comments() end,                                          desc = "Todo" },
+      { "<leader>sT", function() require 'snacks'.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
+    },
   },
 
   {
@@ -123,8 +103,9 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim',
       'sindrets/diffview.nvim',
-      'nvim-telescope/telescope.nvim',
+      'folke/snacks.nvim',
     },
+    cmd = 'Neogit',
     keys = {
       { '<leader>G', function() require('neogit').open({ kind = 'auto' }) end, desc = 'Neogit' },
     },

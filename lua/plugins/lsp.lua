@@ -143,15 +143,15 @@ return {
             vim.diagnostic.open_float(nil, { scope = 'line' })
           end, 'Show diagnostics')
 
-          map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
-          map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
-          map('n', 'gi', vim.lsp.buf.implementation, 'Go to implementation')
-          map('n', 'go', vim.lsp.buf.type_definition, 'Go to type definition')
-          map('n', 'gr',
-            require('telescope.builtin').lsp_references, 'Show references')
-          map('n', '<leader>ds',
-            require('telescope.builtin').lsp_document_symbols, 'Document symbols')
-          map('n', '<C-k>', bordered_signature_help, 'Signature documentation')
+          -- map('n', 'gd', vim.lsp.buf.definition, 'Go to definition')
+          -- map('n', 'gD', vim.lsp.buf.declaration, 'Go to declaration')
+          -- map('n', 'gi', vim.lsp.buf.implementation, 'Go to implementation')
+          -- map('n', 'go', vim.lsp.buf.type_definition, 'Go to type definition')
+          -- map('n', 'gr',
+          --   require('telescope.builtin').lsp_references, 'Show references')
+          -- map('n', '<leader>ds',
+          --   require('telescope.builtin').lsp_document_symbols, 'Document symbols')
+          -- map('n', '<C-k>', bordered_signature_help, 'Signature documentation')
         end
       })
     end,
@@ -181,11 +181,11 @@ return {
     event = 'LspAttach',
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim"
+      "folke/snacks.nvim"
     },
     opts = {
       backend = 'difftastic',
-      picker = 'telescope',
+      picker = 'snacks',
     },
   },
 }
