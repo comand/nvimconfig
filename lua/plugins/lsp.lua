@@ -74,7 +74,7 @@ return {
 
     config = function(_, opts)
       -- Logs get huge very quickly -- set "debug" for debugging.
-      vim.lsp.set_log_level("off")
+      vim.lsp.log.set_level("off")
 
       local function bordered_hover(_opts)
         _opts = _opts or {}
