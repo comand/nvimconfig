@@ -9,6 +9,12 @@ return {
     },
     python = {
       analysis = {
+        diagnosticSeverityOverrides = {
+          reportUndefinedVariable = false,
+          reportMissingImports = false,
+          reportUnusedVariable = false,
+          reportUnusedImport = false,
+        },
         ignore = { '*' }, -- using Ruff for linting
         autoSearchPaths = true,
         useLibraryCodeForTypes = true,
