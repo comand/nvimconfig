@@ -1,6 +1,10 @@
 if vim.g.neovide then
   -- Gui font
-  vim.o.guifont = "CommitMono,Symbols_Nerd_Font_Mono:h10.5"
+  if vim.fn.has('macunix') then
+    vim.o.guifont = "CommitMono,Symbols_Nerd_Font_Mono:h14"
+  else
+    vim.o.guifont = "CommitMono,Symbols_Nerd_Font_Mono:h10.5"
+  end
 
   -- Floating windows
   vim.g.neovide_floating_z_height = 5
