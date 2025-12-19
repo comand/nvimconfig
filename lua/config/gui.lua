@@ -1,6 +1,6 @@
 if vim.g.neovide then
   -- Gui font
-  if vim.fn.has('macunix') then
+  if vim.loop.os_uname().sysname == "Darwin" then
     vim.o.guifont = "CommitMono,Symbols_Nerd_Font_Mono:h14"
   else
     vim.o.guifont = "CommitMono,Symbols_Nerd_Font_Mono:h10.5"
