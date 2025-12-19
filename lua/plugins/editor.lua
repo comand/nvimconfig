@@ -85,11 +85,16 @@ return {
     event = 'VeryLazy',
     init = function()
       vim.keymap.set("n", "<leader>st", function()
-        require("snacks").picker.todo_comments()
-      end, { desc = "Todo" })
+        require("snacks").picker.todo_comments({
+          keywords = { "TODO", "XXX", "FIX" },
+          dirs = {vim.api.nvim_buf_get_name(0)}
+        })
+      end, { desc = "Todo Buffer" })
       vim.keymap.set("n", "<leader>sT", function()
-        require("snacks").picker.todo_comments({ keywords = { "TODO", "XXX", "FIX" } })
-      end, { desc = "Todo/XXX/Fix" })
+        require("snacks").picker.todo_comments({
+          keywords = { "TODO", "XXX", "FIX" }
+        })
+      end, { desc = "Todo Dir" })
     end,
   },
 
