@@ -22,6 +22,17 @@ if vim.g.neovide then
   vim.g.neovide_scroll_animation_far_lines = 0
   vim.g.neovide_scroll_animation_length = 0.00
 
+  vim.opt.title = true
+
+  vim.api.nvim_create_autocmd('BufEnter', {
+    callback = function()
+      local bufname = vim.fn.expand('%:.')
+      if bufname ~= '' then
+        vim.opt.titlestring = "Neovide [" .. bufname .. "]"
+      end
+    end
+  })
+
   vim.g.neovide_remember_window_size = true
   -- This only works when passing neovide --grid
   vim.opt.lines = 71
