@@ -28,7 +28,7 @@ if vim.g.neovide then
     callback = function()
       local bufname = vim.fn.expand('%:.')
       if bufname ~= '' then
-        vim.opt.titlestring = "Neovide [" .. bufname .. "]"
+        vim.opt.titlestring = "Neovide [" .. bufname .. "] (" .. vim.env.TREE .. ")"
       end
     end
   })
