@@ -7,6 +7,7 @@ nmap('<Tab>l', ':set invlist list?<CR>', 'Toggle list chars')
 nmap('<Tab>n', ':set invnumber number?<CR>', 'Toggle line numbers')
 nmap('<Tab>h', ':set invhlsearch hlsearch?<CR>', 'Toggle search highlight')
 nmap('<Tab>s', ':set invspell spell?<CR>', 'Toggle spell check')
+nmap('<Tab>f', ':set invfoldenable foldenable?<CR>', 'Toggle folding')
 
 nmap('<Tab>o', function()
   local value = vim.api.nvim_get_option_value('colorcolumn', {})
@@ -17,7 +18,7 @@ nmap('<Tab>o', function()
   end
 end, 'Toggle colorcolumn')
 
-nmap('<Tab>f', function()
+nmap('<Tab>q', function()
   local curwin = vim.api.nvim_get_current_win()
   local windows = vim.fn.getwininfo()
   for _, win in pairs(windows) do

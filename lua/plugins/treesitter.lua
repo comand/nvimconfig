@@ -1,16 +1,11 @@
 return {
   {
-    'nvim-treesitter/nvim-treesitter',
+    "nvim-treesitter/nvim-treesitter",
     lazy = false,
-    branch = 'main',
-    build = ':TSUpdate',
-  },
-  {
-    'MeanderingProgrammer/treesitter-modules.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    lazy = false,
-    opts = {
-      ensure_installed = {
+    branch = "main",
+    build = ":TSUpdate",
+    config = function(_, opts)
+      require("nvim-treesitter").install({
         "bash",
         "c",
         "cmake",
@@ -45,26 +40,45 @@ return {
         "vimdoc",
         "xml",
         "yaml",
-      },
-      -- fold = { enable = true },
-      highlight = {
-        enable = true,
-        -- additional_vim_regex_highlighting = { "python" }
-      },
-      indent = { enable = true },
-      -- incremental_selection = { enable = true },
-    },
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("treesitter.setup", {}),
+        callback = function(args)
+          local buf = args.buf
+          local filetype = args.match
+
+          -- you need some mechanism to avoid running on buffers that do not
+          -- correspond to a language. This implementation checks if a parser
+          -- exists for the current language.
+          local language = vim.treesitter.language.get_lang(filetype) or filetype
+          if not vim.treesitter.language.add(language) then
+            return
+          end
+
+          -- enable folding
+          vim.wo.foldmethod = "expr"
+          vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          vim.wo.foldenable = false
+          -- enable highlight
+          vim.treesitter.start(buf, language)
+          -- enable indent
+          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+    end,
   },
+
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     lazy = false,
-    branch = 'main',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    branch = "main",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {
       select = {
         lookahead = true,
         selection_modes = {
-          ["@function.outer"] = 'V', -- linewise
+          ["@function.outer"] = "V", -- linewise
         },
       },
       move = {
@@ -72,10 +86,10 @@ return {
       },
     },
     config = function(_, opts)
-      require "nvim-treesitter-textobjects".setup {opts}
+      require("nvim-treesitter-textobjects").setup({ opts })
 
       -- select
-      local select = require "nvim-treesitter-textobjects.select"
+      local select = require("nvim-treesitter-textobjects.select")
       for _, mode in ipairs({ "x", "o" }) do
         -- [a]rgument
         vim.keymap.set(mode, "aa", function()
@@ -126,7 +140,7 @@ return {
       end
 
       -- swap
-      local swap = require "nvim-treesitter-textobjects.swap"
+      local swap = require("nvim-treesitter-textobjects.swap")
       vim.keymap.set("n", ")m", function()
         swap.swap_next("@function.outer")
       end, { desc = "textobject: swap next [m]ethod" })
@@ -141,39 +155,39 @@ return {
       end, { desc = "textobject: swap previous [a]rgument" })
 
       -- move
-      local move = require "nvim-treesitter-textobjects.move"
+      local move = require("nvim-treesitter-textobjects.move")
       -- [m]ethod
-      vim.keymap.set({"n", "x", "o"}, "]m", function()
+      vim.keymap.set({ "n", "x", "o" }, "]m", function()
         move.goto_next_start("@function.outer")
       end, { desc = "textobject: goto next [m]ethod start" })
-      vim.keymap.set({"n", "x", "o"}, "]M", function()
+      vim.keymap.set({ "n", "x", "o" }, "]M", function()
         move.goto_next_end("@function.outer")
       end, { desc = "textobject: goto next [m]ethod end" })
-      vim.keymap.set({"n", "x", "o"}, "[m", function()
+      vim.keymap.set({ "n", "x", "o" }, "[m", function()
         move.goto_previous_start("@function.outer")
       end, { desc = "textobject: goto previous [m]ethod start" })
-      vim.keymap.set({"n", "x", "o"}, "[M", function()
+      vim.keymap.set({ "n", "x", "o" }, "[M", function()
         move.goto_previous_end("@function.outer")
       end, { desc = "textobject: goto previous [m]ethod end" })
       -- c[l]ass
-      vim.keymap.set({"n", "x", "o"}, "]l", function()
+      vim.keymap.set({ "n", "x", "o" }, "]l", function()
         move.goto_next_start("@class.outer")
       end, { desc = "textobject: goto next c[l]ass start" })
-      vim.keymap.set({"n", "x", "o"}, "]L", function()
+      vim.keymap.set({ "n", "x", "o" }, "]L", function()
         move.goto_next_end("@class.outer")
       end, { desc = "textobject: goto next c[l]ass end" })
-      vim.keymap.set({"n", "x", "o"}, "[l", function()
+      vim.keymap.set({ "n", "x", "o" }, "[l", function()
         move.goto_previous_start("@class.outer")
       end, { desc = "textobject: goto previous c[l]ass start" })
-      vim.keymap.set({"n", "x", "o"}, "[L", function()
+      vim.keymap.set({ "n", "x", "o" }, "[L", function()
         move.goto_previous_end("@class.outer")
       end, { desc = "textobject: goto previous c[l]ass end" })
-
     end,
   },
+
   {
-    'nvim-treesitter/nvim-treesitter-context',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    "nvim-treesitter/nvim-treesitter-context",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     lazy = false,
   },
 }

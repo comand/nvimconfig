@@ -10,10 +10,14 @@ return {
     python = {
       analysis = {
         diagnosticSeverityOverrides = {
-          reportUndefinedVariable = false,
+          reportArgumentType = false,
+          reportAttributeAccessIssue = false,
           reportMissingImports = false,
-          reportUnusedVariable = false,
+          reportOperatorIssue = false,
+          reportOptionalSubscript = false,
+          reportUndefinedVariable = false,
           reportUnusedImport = false,
+          reportUnusedVariable = false,
         },
         ignore = { '*' }, -- using Ruff for linting
         autoSearchPaths = true,
