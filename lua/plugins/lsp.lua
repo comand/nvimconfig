@@ -60,7 +60,7 @@ return {
         update_in_insert = false,
         underline = { severity = { min = vim.diagnostic.severity.WARN } },
         severity_sort = true,
-        jump = { float = true },
+        jump = { on_jump = vim.diagnostic.open_float },
         float = {
           focusable = false,
           style = 'minimal',
