@@ -83,12 +83,12 @@ return {
         }))
       end
 
-      local function bordered_signature_help(_opts)
-        _opts = _opts or {}
-        return vim.lsp.buf.signature_help(vim.tbl_deep_extend("force", _opts, {
-          border = "rounded",
-        }))
-      end
+      -- local function bordered_signature_help(_opts)
+      --   _opts = _opts or {}
+      --   return vim.lsp.buf.signature_help(vim.tbl_deep_extend("force", _opts, {
+      --     border = "rounded",
+      --   }))
+      -- end
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -113,7 +113,6 @@ return {
           -- Set the tagfunc to use lsp-definition
           vim.api.nvim_set_option_value(
             'tagfunc', 'v:lua.vim.lsp.tagfunc', { buf = ev.buf })
-
 
           -- Bind LSP keys
           local map = function(m, lhs, rhs, desc)
