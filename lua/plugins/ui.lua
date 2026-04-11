@@ -187,8 +187,15 @@ return {
   },
 
   {
-    "RRethy/vim-illuminate",
-    event = { 'BufReadPost', 'BufNewFile' },
+    -- https://github.com/RRethy/vim-illuminate/issues/247
+    --"RRethy/vim-illuminate",
+    "UrsaDK/vim-illuminate",
+    dependencies = {
+      { "nvim-treesitter/nvim-treesitter" },
+      { "nvim-treesitter/nvim-treesitter-locals" },
+    },
+
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       delay = 500,
       under_cursor = false,
