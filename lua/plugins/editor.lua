@@ -87,7 +87,7 @@ return {
       vim.keymap.set("n", "<leader>st", function()
         require("snacks").picker.todo_comments({
           keywords = { "TODO", "XXX", "FIX" },
-          dirs = {vim.api.nvim_buf_get_name(0)}
+          dirs = { vim.api.nvim_buf_get_name(0) }
         })
       end, { desc = "Todo Buffer" })
       vim.keymap.set("n", "<leader>sT", function()
@@ -100,13 +100,13 @@ return {
 
   {
     'psliwka/vim-dirtytalk',
-    ft = { 'python', 'lua', 'markdown', 'cpp', 'bash' },
+    event = { 'BufReadPre', 'BufNewFile' },
+    ft = { 'python', 'lua', 'markdown', 'cpp', 'bash', 'rust' },
     build = ':DirtytalkUpdate',
     init = function()
       vim.opt_local.spelllang = { 'en', 'programming' }
     end,
   },
-
 
   {
     'NeogitOrg/neogit',
@@ -123,9 +123,6 @@ return {
 
   {
     "sindrets/diffview.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     keys = {
       {
