@@ -30,11 +30,6 @@ return {
 		config = function()
 			vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 
-			local lspkind = require("lspkind")
-			lspkind.init({
-				symbol_map = require("config.icons").kinds,
-			})
-
 			local luasnip = require("luasnip")
 
 			local cmp = require("cmp")
@@ -90,29 +85,26 @@ return {
 				},
 				preselect = cmp.PreselectMode.None,
 				formatting = {
-					fields = { "kind", "abbr", "menu" },
+					fields = { "abbr", "menu", "icon", "kind" },
+          format = function(entry, vim_item)
+            local kind = require('lspkind').cmp_format({
+              mode = "symbol_text",
+              ellipsis_char = "…",
+              show_labelDetails = true,
+              symbol_map = require("config.icons").kinds,
+            })(entry, vim_item)
 
-					format = function(entry, vim_item)
-						local kind = lspkind.cmp_format({
-							mode = "symbol",
-						})(entry, vim.deepcopy(vim_item))
+            kind.kind = kind.kind .. " "
 
-						-- highlight_info is nil means we are missing the ts parser, it's
-						-- better to fallback to use default `vim_item.abbr`. What this plugin
-						-- offers is two fields: `vim_item.abbr_hl_group` and `vim_item.abbr`.
-						local highlights_info = require("colorful-menu").cmp_highlights(entry)
-						if highlights_info ~= nil then
-							vim_item.abbr_hl_group = highlights_info.highlights
-							vim_item.abbr = highlights_info.text
-						end
+            local highlights_info = require("colorful-menu").cmp_highlights(entry)
+            if highlights_info ~= nil then
+              kind.abbr_hl_group = highlights_info.highlights
+              kind.abbr = highlights_info.text
+            end
 
-						local strings = vim.split(kind.kind, "%s", { trimempty = true })
-						vim_item.kind = " " .. (strings[1] or "") .. " "
-						vim_item.menu = ""
-
-						return vim_item
-					end,
-				},
+            return kind
+          end
+        },
 				sorting = {
 					comparators = {
 						cmp.config.compare.offset,
