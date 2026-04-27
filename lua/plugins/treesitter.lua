@@ -13,7 +13,7 @@ return {
         "css",
         "diff",
         "dockerfile",
-        "doxygen",
+        -- "doxygen",
         "glsl",
         "go",
         "html",
