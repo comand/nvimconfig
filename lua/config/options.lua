@@ -41,6 +41,7 @@ vim.opt.undofile = true
 vim.opt.updatetime = 100 -- faster completion (4000ms default)
 vim.opt.wrap = false
 vim.opt.writebackup = false
+vim.opt.winborder = 'rounded'
 
 vim.opt.shortmess:append "cI"
 vim.opt.whichwrap:append('<,>,[,],h,l')

@@ -40,13 +40,8 @@ return {
           end,
         },
         window = {
-          completion = cmp.config.window.bordered({
-            -- Fix potential highlighting issues (transparent background)
-            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
-          }),
-          documentation = cmp.config.window.bordered({
-            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
-          }),
+          completion = cmp.config.window.bordered(),
+          documentation = cmp.config.window.bordered(),
         },
         mapping = {
           ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Replace }),
@@ -89,8 +84,8 @@ return {
           format = function(entry, vim_item)
             local kind = require('lspkind').cmp_format({
               mode = "symbol_text",
+              maxwidth = 50,
               ellipsis_char = "…",
-              show_labelDetails = true,
               symbol_map = require("config.icons").kinds,
             })(entry, vim_item)
 
