@@ -102,16 +102,6 @@ return {
   },
 
   {
-    'psliwka/vim-dirtytalk',
-    event = { 'BufReadPre', 'BufNewFile' },
-    ft = { 'python', 'lua', 'markdown', 'cpp', 'bash', 'rust' },
-    build = ':DirtytalkUpdate',
-    init = function()
-      vim.opt_local.spelllang = { 'en', 'programming' }
-    end,
-  },
-
-  {
     'NeogitOrg/neogit',
     dependencies = {
       'nvim-lua/plenary.nvim',
