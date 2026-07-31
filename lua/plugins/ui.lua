@@ -16,6 +16,14 @@ return {
       notifier = { enabled = true, style = 'fancy' },
       picker = { enabled = true },
       explorer = { enabled = true },
+      styles = {
+        notification = {
+          wo = { wrap = true },
+        },
+        notification_history = {
+          wo = { wrap = true },
+        },
+      },
     },
     init = function()
       vim.api.nvim_create_autocmd("ColorScheme", {
