@@ -156,20 +156,17 @@ return {
   {
     'mason-org/mason-lspconfig.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
-    config = function()
-      require('mason-lspconfig').setup {
-        ensure_installed = {
-          "bashls",
-          "clangd",
-          "jsonls",
-          "pyright",
-          "rust_analyzer",
-          "ruff",
-          "lua_ls",
-        },
-        automatic_enable = true,
-      }
-    end
+    opts = {
+      ensure_installed = {
+        "bashls",
+        "clangd",
+        "jsonls",
+        "pyright",
+        "rust_analyzer",
+        "ruff",
+        "lua_ls",
+      },
+    }
   },
 
   {
