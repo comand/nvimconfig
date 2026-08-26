@@ -105,7 +105,7 @@ return {
     'NeogitOrg/neogit',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'sindrets/diffview.nvim',
+      'dlyongemallo/diffview-plus.nvim',
       'folke/snacks.nvim',
     },
     cmd = 'Neogit',
@@ -115,8 +115,14 @@ return {
   },
 
   {
-    "sindrets/diffview.nvim",
-    cmd = { "DiffviewOpen", "DiffviewFileHistory" },
+    "dlyongemallo/diffview-plus.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewToggle",
+      "DiffviewFileHistory",
+      "DiffviewDiffFiles",
+      "DiffviewLog",
+    },
     keys = {
       {
         "<leader>fh",
