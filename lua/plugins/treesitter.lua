@@ -148,10 +148,10 @@ return {
         swap.swap_next("@function.outer")
       end, { desc = "textobject: swap previous [m]ethod" })
       vim.keymap.set("n", ")a", function()
-        swap.swap_next("@parameter.outer")
+        swap.swap_next("@parameter.inner")
       end, { desc = "textobject: swap next [a]rgument" })
       vim.keymap.set("n", "(a", function()
-        swap.swap_next("@parameter.outer")
+        swap.swap_next("@parameter.inner")
       end, { desc = "textobject: swap previous [a]rgument" })
 
       -- move
